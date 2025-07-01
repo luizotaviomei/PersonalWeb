@@ -1,3 +1,8 @@
+// Fallback seguro para versões
+const currentVersion = (typeof versions !== 'undefined' && versions.length > 0)
+  ? versions[0].version
+  : 'vUnknown';
+
 const settings = {
   toggleAnimations: () => {
     const enabled = document.getElementById('toggleAnimations')?.checked;
@@ -35,7 +40,7 @@ const settings = {
   },
   forceUpdateModal: () => {
     const enabled = document.getElementById('forceUpdateModal')?.checked;
-    localStorage.setItem('lastSeenVersion', enabled ? '' : versions[0].version);
+    localStorage.setItem('lastSeenVersion', enabled ? '' : currentVersion);
     localStorage.setItem('forceUpdateModal', enabled);
   },
   languageSelect: () => {

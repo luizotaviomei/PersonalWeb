@@ -31,6 +31,69 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }, 6000); // espera o fadeOut do #intro
 });
+const versions = [
+  {
+    version: "vBeta 1.0",
+    changes: [
+      "✔ Layout inicial com tema escuro/claro",
+      "✔ Loader animado com bolas caindo",
+      "✔ Animação de digitação",
+      "✔ Menu lateral com abas e modal",
+      "✔ Botão de tema com ícones"
+    ]
+  },
+  {
+    version: "vBeta 0.9",
+    changes: [
+      "✔ Protótipo inicial com tema escuro",
+      "✔ Base HTML/CSS minimalista",
+      "✔ Primeira versão dos ícones de redes sociais"
+    ]
+  }
+];
+
+let currentVersionIndex = 0;
+
+function openUpdates() {
+  showVersion(currentVersionIndex);
+  document.getElementById("updates-modal").classList.remove("hidden");
+}
+
+function closeUpdates() {
+  document.getElementById("updates-modal").classList.add("hidden");
+}
+
+function showVersion(index) {
+  const modal = document.getElementById("updates-modal");
+  const versionData = versions[index];
+  modal.querySelector("p strong").textContent = versionData.version;
+
+  const ul = modal.querySelector("ul.changelog");
+  ul.innerHTML = "";
+  versionData.changes.forEach(change => {
+    const li = document.createElement("li");
+    li.textContent = change;
+    ul.appendChild(li);
+  });
+
+  // Controla estado dos botões
+  document.getElementById("prev-version").disabled = index === versions.length - 1;
+  document.getElementById("next-version").disabled = index === 0;
+}
+
+function showPreviousVersion() {
+  if (currentVersionIndex < versions.length - 1) {
+    currentVersionIndex++;
+    showVersion(currentVersionIndex);
+  }
+}
+
+function showNextVersion() {
+  if (currentVersionIndex > 0) {
+    currentVersionIndex--;
+    showVersion(currentVersionIndex);
+  }
+}
 function openUpdates() {
   document.getElementById("updates-modal").classList.remove("hidden");
 }

@@ -1,46 +1,72 @@
-/* styles/updates.css */
+:root {
+  --bg-color: #0b0b0b;
+  --text-color: #fff;
+  --accent-color: #a259ff;
+}
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'Fira Code', monospace;
   margin: 0;
-  padding: 0 1rem;
-  line-height: 1.6;
+  padding: 2rem 1rem;
+  background-color: var(--bg-color);
+  font-family: 'Fira Code', monospace;
+  color: var(--text-color);
 }
 
-.update-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 3rem 1rem;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--text-color);
-  padding-bottom: 0.5rem;
-}
-
-.update-entry {
-  margin-bottom: 2rem;
-  padding: 1rem;
-  border-left: 3px solid var(--text-color);
-  background-color: rgba(255,255,255,0.03);
+#back-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: none;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  padding: 5px 10px;
   border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
 }
 
-.update-entry h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
+.page-title {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+}
+
+.updates-container {
+  max-width: 600px;
+  margin: auto;
+}
+
+.accordion {
+  background-color: #1a1a1a;
+  color: var(--accent-color);
+  cursor: pointer;
+  padding: 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.1rem;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.accordion:hover {
+  background-color: #292929;
+}
+
+.panel {
+  background-color: #121212;
   color: var(--text-color);
+  padding: 0 15px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  border-left: 2px solid var(--accent-color);
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 1rem;
 }
-
-.update-entry p {
-  margin: 0.5rem 0;
-  color: var(--text-color);
-}
-
 @media (max-width: 600px) {
   .update-container {
     padding: 2rem 1rem;

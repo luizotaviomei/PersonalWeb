@@ -17,9 +17,9 @@
 </head>
 <body>
   <div id="loader">
-  <div class="spinner"></div>
-  <div class="loader-message">Carregando Link Hub...</div>
-</div>
+    <div class="spinner"></div>
+    <div class="loader-message">Carregando Link Hub...</div>
+  </div>
 
   <div class="menu-button" onclick="toggleSidebar()">
     <div></div>
@@ -40,7 +40,7 @@
           <a href="sobre.html" class="accordion-title">Sobre mim</a>
         </div>
         <div class="accordion-item">
-          <button class="accordion-title" onclick="toggleSettings()">⚙️ Configurações do site</button>
+          <button id="settings-button" class="accordion-title">⚙️ Configurações do site</button>
         </div>
         <div class="accordion-item">
           <button id="updates-button" class="accordion-title">Últimas Atualizações</button>
@@ -50,74 +50,72 @@
   </div>
 
   <!-- Modal de Configurações -->
-  <!-- Modal de Configurações -->
-<div id="settings-modal" class="updates-modal hidden">
-  <div class="modal-content">
-    <h2>Configurações do site</h2>
-    <form class="settings-group">
+  <div id="settings-modal" class="updates-modal hidden">
+    <div class="modal-content">
+      <h2>Configurações do site</h2>
+      <form class="settings-group">
 
-      <div class="settings-row">
-        <label><input type="checkbox" id="toggleAnimations"> <span>Animações visuais</span></label>
-        <span onclick="showHelp('toggleAnimations')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label><input type="checkbox" id="toggleAnimations"> <span>Animações visuais</span></label>
+          <span onclick="showHelp('toggleAnimations')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label><input type="checkbox" id="increaseContrast"> <span>Aumentar contraste</span></label>
-        <span onclick="showHelp('increaseContrast')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label><input type="checkbox" id="increaseContrast"> <span>Aumentar contraste</span></label>
+          <span onclick="showHelp('increaseContrast')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label><input type="checkbox" id="preloadUpdates"> <span>Pré-carregar atualizações</span></label>
-        <span onclick="showHelp('preloadUpdates')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label><input type="checkbox" id="preloadUpdates"> <span>Pré-carregar atualizações</span></label>
+          <span onclick="showHelp('preloadUpdates')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label><input type="checkbox" id="enableDevLogs"> <span>Modo Dev Logs</span></label>
-        <span onclick="showHelp('enableDevLogs')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label><input type="checkbox" id="enableDevLogs"> <span>Modo Dev Logs</span></label>
+          <span onclick="showHelp('enableDevLogs')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label><input type="checkbox" id="debugConsole"> <span>Mostrar dados de debug</span></label>
-        <span onclick="showHelp('debugConsole')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label><input type="checkbox" id="debugConsole"> <span>Mostrar dados de debug</span></label>
+          <span onclick="showHelp('debugConsole')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label><input type="checkbox" id="forceUpdateModal"> <span>Forçar modal de atualização</span></label>
-        <span onclick="showHelp('forceUpdateModal')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label><input type="checkbox" id="forceUpdateModal"> <span>Forçar modal de atualização</span></label>
+          <span onclick="showHelp('forceUpdateModal')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label>
-          <span>Idioma:</span>
-          <select id="languageSelect">
-            <option value="pt">Português</option>
-            <option value="en">Inglês</option>
-          </select>
-        </label>
-        <span onclick="showHelp('languageSelect')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label>
+            <span>Idioma:</span>
+            <select id="languageSelect">
+              <option value="pt">Português</option>
+              <option value="en">Inglês</option>
+            </select>
+          </label>
+          <span onclick="showHelp('languageSelect')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label>
-          <span>Estilo de menu:</span>
-          <select id="menuStyle">
-            <option value="fixed">Fixo</option>
-            <option value="floating">Flutuante</option>
-          </select>
-        </label>
-        <span onclick="showHelp('menuStyle')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label>
+            <span>Estilo de menu:</span>
+            <select id="menuStyle">
+              <option value="fixed">Fixo</option>
+              <option value="floating">Flutuante</option>
+            </select>
+          </label>
+          <span onclick="showHelp('menuStyle')">❔</span>
+        </div>
 
-      <div class="settings-row">
-        <label><input type="checkbox" id="extremeMinimalMode"> <span>Modo "minimalista extremo"</span></label>
-        <span onclick="showHelp('extremeMinimalMode')">❔</span>
-      </div>
+        <div class="settings-row">
+          <label><input type="checkbox" id="extremeMinimalMode"> <span>Modo "minimalista extremo"</span></label>
+          <span onclick="showHelp('extremeMinimalMode')">❔</span>
+        </div>
 
-      <button type="button" onclick="closeSettings()">Fechar</button>
-    </form>
+        <button type="button" onclick="closeSettings()">Fechar</button>
+      </form>
+    </div>
   </div>
-</div>
-
 
   <!-- Caixa flutuante de atualização -->
   <div id="updates-modal" class="updates-modal hidden">
@@ -153,12 +151,12 @@
 
   <div class="footer">feito por Luiz 2025</div>
 
- <script src="scripts/animations.js"></script>
-<script src="scripts/modalUpdates.js"></script>
-<script src="scripts/settings.js"></script>
-<script src="scripts/loader.js"></script>
-<script src="scripts/theme.js"></script>
-<script src="scripts/sidebar.js"></script>
-<script src="scripts/main.js"></script>
+  <script src="scripts/animations.js"></script>
+  <script src="scripts/modalUpdates.js"></script>
+  <script src="scripts/settings.js"></script>
+  <script src="scripts/loader.js"></script>
+  <script src="scripts/theme.js"></script>
+  <script src="scripts/sidebar.js"></script>
+  <script src="scripts/main.js"></script>
 </body>
 </html>

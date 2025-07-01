@@ -1,9 +1,7 @@
-function toggleTheme(checkbox) {
-  if (checkbox.checked) {
-    document.documentElement.setAttribute('data-theme', 'light');
-    localStorage.setItem('theme', 'light');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'dark');
-  }
+// scripts/theme.js
+export function toggleTheme(checkbox) {
+  const theme = checkbox.checked ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
 }
+window.toggleTheme = toggleTheme; // Mantém global para HTML

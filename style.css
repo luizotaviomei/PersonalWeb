@@ -35,7 +35,7 @@ body {
   filter: contrast(1.5) brightness(1.1);
 }
 
-.extreme-minimal *:not(.typing):not(.cube-box):not(.footer):not(.theme-switch):not(.container):not(#loader):not(.loader-message):not(.ball) {
+.extreme-minimal .hide-if-minimal {
   display: none !important;
 }
 

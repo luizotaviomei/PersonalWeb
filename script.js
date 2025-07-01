@@ -31,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }, 6000); // espera o fadeOut do #intro
 });
+function openUpdates() {
+  document.getElementById("updates-modal").classList.remove("hidden");
+}
+
+function closeUpdates() {
+  document.getElementById("updates-modal").classList.add("hidden");
+}
 
 function showUnavailableMessage(event) {
   event.preventDefault();

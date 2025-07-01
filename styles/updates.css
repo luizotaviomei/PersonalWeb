@@ -1,17 +1,14 @@
-body {
-  margin: 0;
-  font-family: 'Fira Code', monospace;
-  background-color: #fff;
-  color: #333;
-  padding: 2rem;
-  box-sizing: border-box;
-}
-/* Tema claro */
+/* ========= Variáveis de Tema ========= */
 :root[data-theme='light'] {
   --bg-color: #fff;
   --text-color: #111;
   --accent-color: #6b21a8;
   --panel-bg: #f9f9ff;
+  --hover-bg: #e6e6fa;
+  --soft-bg: #eee;
+  --soft-hover: #ddd;
+  --border-color: #6b21a8;
+  --section-subtitle: #7c3aed;
 }
 
 :root:not([data-theme='light']) {
@@ -19,57 +16,51 @@ body {
   --text-color: #f1f1f1;
   --accent-color: #a855f7;
   --panel-bg: #1e1b2f;
+  --hover-bg: rgba(168, 85, 247, 0.1);
+  --soft-bg: #1c1c1c;
+  --soft-hover: #2a2a2a;
+  --border-color: #a855f7;
+  --section-subtitle: #c084fc;
 }
 
-/* Aplicando variáveis */
+/* ========= Estilos base ========= */
 body {
+  margin: 0;
+  font-family: 'Fira Code', monospace;
   background-color: var(--bg-color);
   color: var(--text-color);
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
-.accordion-toggle {
-  background-color: var(--panel-bg);
-  color: var(--accent-color);
-}
-
-.accordion-toggle:hover {
-  background-color: rgba(168, 85, 247, 0.1);
-}
-
-.accordion-content {
-  background-color: var(--panel-bg);
-  border-left: 3px solid var(--accent-color);
-}
-
-h3, .page-title {
-  color: var(--accent-color);
-}
-
+/* ========= Título ========= */
 .page-title {
   text-align: center;
   font-size: 2.2rem;
-  color: #6b21a8;
+  color: var(--accent-color);
   margin-bottom: 2rem;
 }
 
+/* ========= Botão Voltar ========= */
 .back-button {
   position: absolute;
   top: 15px;
   left: 15px;
   text-decoration: none;
-  color: #6b21a8;
+  color: var(--accent-color);
   font-weight: bold;
   font-size: 1rem;
-  background: #eee;
+  background: var(--soft-bg);
   padding: 6px 12px;
   border-radius: 8px;
   transition: background 0.3s;
 }
 
 .back-button:hover {
-  background: #ddd;
+  background: var(--soft-hover);
 }
 
+/* ========= Itens de atualização ========= */
 .update-item {
   margin-bottom: 1.5rem;
   border-radius: 8px;
@@ -77,13 +68,14 @@ h3, .page-title {
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
+/* ========= Botão do accordion ========= */
 .accordion-toggle {
   width: 100%;
   text-align: left;
   padding: 1rem;
   font-size: 1.1rem;
-  background-color: #f4f4f4;
-  color: #4b0082;
+  background-color: var(--panel-bg);
+  color: var(--accent-color);
   border: none;
   cursor: pointer;
   font-weight: bold;
@@ -92,20 +84,20 @@ h3, .page-title {
 }
 
 .accordion-toggle:hover {
-  background-color: #e6e6fa;
+  background-color: var(--hover-bg);
 }
 
 .accordion-toggle.open {
-  background-color: #ddd6fe;
+  background-color: var(--hover-bg);
 }
 
-/* AQUI ESTÁ A MUDANÇA */
+/* ========= Conteúdo do accordion ========= */
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  background-color: #faf5ff;
+  background-color: var(--panel-bg);
   padding: 0 1.5rem;
-  border-left: 3px solid #a855f7;
+  border-left: 3px solid var(--border-color);
   border-radius: 0 0 8px 8px;
   transition: max-height 0.4s ease, padding 0.3s ease;
 }
@@ -115,8 +107,9 @@ h3, .page-title {
   max-height: 800px;
 }
 
+/* ========= Seções internas ========= */
 h3 {
-  color: #6b21a8;
+  color: var(--accent-color);
   margin-top: 0;
 }
 
@@ -125,16 +118,17 @@ h3 {
 }
 
 .section h4 {
-  color: #7c3aed;
+  color: var(--section-subtitle);
   margin-bottom: 0.3rem;
 }
 
 .section p {
-  color: #444;
+  color: var(--text-color);
   margin: 0;
   padding-left: 1rem;
 }
 
+/* ========= Responsividade ========= */
 @media (max-width: 600px) {
   body {
     padding: 1rem;

@@ -11,36 +11,66 @@
   <div class="config-container">
     <h1>⚙️ Configurações do Site</h1>
 
-    <section class="config-section">
-      <label>
-        <input type="checkbox" id="toggleTheme" />
-        Tema escuro
-      </label>
-      <label>
-        <input type="checkbox" id="toggleAnimations" />
-        Animações visuais
-      </label>
-      <label>
-        <input type="checkbox" id="toggleContrast" />
-        Modo acessível (alto contraste)
-      </label>
-      <label>
-        <input type="checkbox" id="showNotifications" />
-        Notificações de novas versões
-      </label>
-      <label>
-        <input type="checkbox" id="devLogsMode" />
-        Modo Dev Logs
-      </label>
-    </section>
+    <form class="settings-group">
+      <div class="settings-row">
+        <label><input type="checkbox" id="toggleAnimations"> <span>Animações visuais</span></label>
+        <span onclick="showHelp('toggleAnimations')">❔</span>
+      </div>
 
-    <section class="config-section">
-      <button onclick="resetPreferences()">Resetar preferências</button>
-      <button onclick="clearData()">Apagar dados salvos</button>
-      <a href="index.html">⬅️ Voltar para a página principal</a>
-    </section>
+      <div class="settings-row">
+        <label><input type="checkbox" id="increaseContrast"> <span>Aumentar contraste</span></label>
+        <span onclick="showHelp('increaseContrast')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="preloadUpdates"> <span>Pré-carregar atualizações</span></label>
+        <span onclick="showHelp('preloadUpdates')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="enableDevLogs"> <span>Modo Dev Logs</span></label>
+        <span onclick="showHelp('enableDevLogs')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="debugConsole"> <span>Mostrar dados de debug</span></label>
+        <span onclick="showHelp('debugConsole')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="forceUpdateModal"> <span>Forçar modal de atualização</span></label>
+        <span onclick="showHelp('forceUpdateModal')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label>
+          <span>Idioma:</span>
+          <select id="languageSelect">
+            <option value="pt">Português</option>
+            <option value="en">Inglês</option>
+          </select>
+        </label>
+        <span onclick="showHelp('languageSelect')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label>
+          <span>Estilo de menu:</span>
+          <select id="menuStyle">
+            <option value="fixed">Fixo</option>
+            <option value="floating">Flutuante</option>
+          </select>
+        </label>
+        <span onclick="showHelp('menuStyle')">❔</span>
+      </div>
+
+      <div class="settings-buttons">
+        <button type="button" id="resetBtn">Resetar preferências</button>
+        <button type="button" id="backBtn">⬅️ Voltar</button>
+      </div>
+    </form>
   </div>
 
-  <script src="script.js"></script>
+  <script src="scripts/config.js"></script>
 </body>
 </html>

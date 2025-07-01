@@ -1,8 +1,20 @@
 // Loader
 window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
-  loader.style.opacity = '0';
-  setTimeout(() => loader.remove(), 500);
+  const message = document.getElementById('loader-message');
+  const hasVisited = localStorage.getItem('visited');
+
+  // Define a mensagem personalizada
+  message.textContent = hasVisited ? 'Welcome back!' : 'Welcome!';
+
+  // Marca como visitado
+  localStorage.setItem('visited', 'true');
+
+  // Espera para dar tempo de mostrar mensagem
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    setTimeout(() => loader.remove(), 600);
+  }, 1500);
 });
 
 // Bolas caindo

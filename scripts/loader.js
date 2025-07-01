@@ -1,4 +1,4 @@
-export function initLoader() {
+function initLoader() {
   window.addEventListener("load", () => {
     const loader = document.getElementById('loader');
     const typingElement = document.getElementById("typing");
@@ -27,3 +27,6 @@ export function initLoader() {
     }, 1000);
   });
 }
+
+// Torna a função acessível globalmente
+window.initLoader = initLoader;

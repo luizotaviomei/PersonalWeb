@@ -1,3 +1,9 @@
+// Loader
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  loader.style.opacity = '0';
+  setTimeout(() => loader.remove(), 500);
+});
 const NUM_BOLAS = 80;
 for (let i = 0; i < NUM_BOLAS; i++) {
   const ball = document.createElement('div');
@@ -9,6 +15,22 @@ for (let i = 0; i < NUM_BOLAS; i++) {
   ball.style.width = ball.style.height = `${4 + Math.random() * 6}px`;
   document.body.appendChild(ball);
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const text = "Welcome to Link Hub...";
+  const typingElement = document.getElementById("typing");
+
+  setTimeout(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        typingElement.textContent += text[i];
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+  }, 6000); // espera o fadeOut do #intro
+});
 
 function showUnavailableMessage(event) {
   event.preventDefault();

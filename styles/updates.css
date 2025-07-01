@@ -1,108 +1,107 @@
-:root {
-  --bg-color: #0b0b0b;
-  --text-color: #fff;
-  --accent-color: #a259ff;
-  --panel-bg: #121212;
-  --accordion-bg: #1a1a1a;
-  --accordion-hover: #292929;
-}
-
 body {
   margin: 0;
-  padding: 2rem 1rem;
-  background-color: var(--bg-color);
   font-family: 'Fira Code', monospace;
-  color: var(--text-color);
-  line-height: 1.6;
-}
-
-#back-button {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: none;
-  border: 1px solid var(--accent-color);
-  color: var(--accent-color);
-  padding: 5px 12px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-#back-button:hover {
-  background: var(--accent-color);
-  color: var(--bg-color);
+  background-color: #fff;
+  color: #333;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .page-title {
   text-align: center;
   font-size: 2.2rem;
-  color: var(--accent-color);
+  color: #6b21a8;
   margin-bottom: 2rem;
 }
 
-.updates-container {
-  max-width: 650px;
-  margin: auto;
-}
-
-.accordion {
-  background-color: var(--accordion-bg);
-  color: var(--accent-color);
-  cursor: pointer;
-  padding: 16px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 1.1rem;
-  transition: background-color 0.2s ease;
+.back-button {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  text-decoration: none;
+  color: #6b21a8;
+  font-weight: bold;
+  font-size: 1rem;
+  background: #eee;
+  padding: 6px 12px;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
+  transition: background 0.3s;
 }
 
-.accordion:hover {
-  background-color: var(--accordion-hover);
+.back-button:hover {
+  background: #ddd;
 }
 
-.panel {
-  background-color: var(--panel-bg);
-  color: var(--text-color);
-  padding: 0 18px;
-  max-height: 0;
+.update-item {
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
   overflow: hidden;
-  transition: max-height 0.3s ease;
-  border-left: 2px solid var(--accent-color);
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.accordion-toggle {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  font-size: 1.1rem;
+  background-color: #f4f4f4;
+  color: #4b0082;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.accordion-toggle:hover {
+  background-color: #e6e6fa;
+}
+
+.accordion-content {
+  display: none;
+  background-color: #faf5ff;
+  padding: 1rem 1.5rem;
+  border-left: 3px solid #a855f7;
   border-radius: 0 0 8px 8px;
+  animation: fadeIn 0.3s ease;
+}
+
+.accordion-content.active {
+  display: block;
+}
+
+.accordion-toggle.open {
+  background-color: #ddd6fe;
+}
+
+h3 {
+  color: #6b21a8;
+  margin-top: 0;
+}
+
+.section {
   margin-bottom: 1rem;
 }
 
-.panel p {
-  margin: 1rem 0;
-  font-size: 0.95rem;
+.section h4 {
+  color: #7c3aed;
+  margin-bottom: 0.3rem;
 }
 
+.section p {
+  color: #444;
+  margin: 0;
+  padding-left: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsivo */
 @media (max-width: 600px) {
   body {
-    padding: 1.5rem 0.8rem;
-  }
-
-  #back-button {
-    font-size: 0.8rem;
-    padding: 4px 10px;
-  }
-
-  .page-title {
-    font-size: 1.6rem;
-  }
-
-  .accordion {
-    font-size: 1rem;
-    padding: 14px;
-  }
-
-  .panel p {
-    font-size: 0.9rem;
+    padding: 1rem;
   }
 }

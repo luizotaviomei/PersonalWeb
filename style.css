@@ -26,6 +26,43 @@ body {
   position: relative;
   transition: background-color 0.4s, color 0.4s;
 }
+.updates-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  z-index: 3000;
+  text-align: center;
+  font-family: 'Fira Code', monospace;
+  max-width: 320px;
+  width: 90%;
+}
+
+.updates-modal button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #a855f7;
+  color: white;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.updates-modal button:hover {
+  background-color: #9333ea;
+}
+
+.hidden {
+  display: none;
+}
+
 /* Loader */
 #loader {
   position: fixed;

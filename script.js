@@ -143,10 +143,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 }
 
-  const toggleEl = document.getElementById('toggleAnimations');
+const toggleEl = document.getElementById('toggleAnimations');
 if (toggleEl) toggleEl.checked = animChecked;
-  document.getElementById('increaseContrast')?.checked = contrastChecked;
-  document.getElementById('extremeMinimalMode')?.checked = minimalChecked;
+
+const contrastEl = document.getElementById('increaseContrast');
+if (contrastEl) contrastEl.checked = contrastChecked;
+
+const minimalEl = document.getElementById('extremeMinimalMode');
+if (minimalEl) minimalEl.checked = minimalChecked;
 
   for (const key in settings) {
   const el = document.getElementById(key);

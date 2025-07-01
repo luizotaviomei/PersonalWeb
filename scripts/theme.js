@@ -1,7 +1,7 @@
-// scripts/theme.js
-export function toggleTheme(checkbox) {
-  const theme = checkbox.checked ? 'light' : 'dark';
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
+function toggleTheme(checkbox) {
+  const isLight = checkbox.checked;
+  document.documentElement.setAttribute('data-theme', isLight ? 'light' : 'dark');
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
 }
-window.toggleTheme = toggleTheme; // Mantém global para HTML
+
+window.toggleTheme = toggleTheme;

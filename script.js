@@ -137,7 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (minimalChecked) document.body.classList.add('extreme-minimal');
   if (menuStyle === 'floating') {
     document.getElementById('sidebar')?.classList.add('floating-menu');
-    document.getElementById('menuStyle').value = 'floating';
+    const menuStyleEl = document.getElementById('menuStyle');
+ if (menuStyleEl) menuStyleEl.value = 'floating';
+
   }
 
   document.getElementById('toggleAnimations')?.checked = animChecked;

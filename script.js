@@ -185,11 +185,10 @@ window.addEventListener("load", () => {
   }
 
   setTimeout(() => {
-    loader.style.opacity = '0';
+  if (loader) loader.style.opacity = '0';
 
-    setTimeout(() => {
-      loader.remove();
-      localStorage.setItem('visitedBefore', 'true');
+  setTimeout(() => {
+    if (loader && loader.parentNode) loader.remove();
 
       // Só faz a animação de digitação se o elemento existir
       if (typingElement) {

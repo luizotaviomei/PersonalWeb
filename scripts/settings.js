@@ -56,3 +56,5 @@ const settings = {
     localStorage.setItem('languageSelect', lang);
   }
 };
+window.toggleSettings = toggleSettings;
+window.closeSettings = closeSettings;

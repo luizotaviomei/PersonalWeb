@@ -66,7 +66,7 @@ function closeUpdates() {
 function showVersion(index) {
   const modal = document.getElementById("updates-modal");
   const versionData = versions[index];
-  modal.querySelector("p strong").textContent = versionData.version;
+  document.getElementById("version-title").textContent = versionData.version;
 
   const ul = modal.querySelector("ul.changelog");
   ul.innerHTML = "";

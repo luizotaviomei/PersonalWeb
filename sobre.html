@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre mim - Luiz Otávio</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/545/545682.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Fira+Code&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="theme-switch">
+    <label class="switch">
+      <input type="checkbox" onchange="toggleTheme(this)">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="container" style="max-width: 800px; margin: auto; padding: 40px 20px;">
+    <h1 class="typing" id="typing">Sobre mim</h1>
+    <p style="font-family: 'Fira Code', monospace; font-size: 1rem; margin-top: 20px; line-height: 1.6;">
+      Olá! Me chamo Luiz Otávio, tenho 20 anos e sou uma pessoa introspectiva com momentos de leve extroversão. 
+      Atualmente, estou construindo este hub para conectar todos os meus links e projetos de forma prática, bonita e funcional.<br><br>
+
+      Me interesso por desenvolvimento web, design minimalista e inovação. Este projeto é um reflexo da minha vontade de aprender, organizar e criar algo útil.<br><br>
+
+      Em breve, trarei novidades, mais funcionalidades e talvez algumas ideias malucas também. Obrigado por visitar! 🚀
+    </p>
+
+    <div style="margin-top: 40px; text-align: center;">
+      <a href="index.html" style="text-decoration: none;">
+        <button style="padding: 10px 20px; border-radius: 8px; border: none; background-color: #a855f7; color: white; font-family: 'Fira Code', monospace; cursor: pointer;">
+          Voltar para o Link Hub
+        </button>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">feito por Luiz 2025</div>
+
+  <script>
+    // Tema salvo
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem('theme');
+      const checkbox = document.querySelector('.switch input');
+      if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        checkbox.checked = true;
+      }
+
+      // Animação de digitação
+      const text = document.getElementById("typing").textContent;
+      const typingElement = document.getElementById("typing");
+      typingElement.textContent = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < text.length) {
+          typingElement.textContent += text[i];
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 80);
+    });
+
+    // Alternar tema
+    function toggleTheme(checkbox) {
+      if (checkbox.checked) {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,20 +1,18 @@
 // Loader
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  const message = document.getElementById('loader-message');
-  const hasVisited = localStorage.getItem('visited');
+// Modal automático se versão for nova
+window.addEventListener("load", () => {
+  const updatesButton = document.getElementById('updates-button');
+  if (updatesButton) {
+    updatesButton.onclick = openUpdates;
+  }
 
-  // Define a mensagem personalizada
-  message.textContent = hasVisited ? 'Welcome back!' : 'Welcome!';
+  const currentVersion = versions[0].version; // Versão mais recente
+  const seenVersion = localStorage.getItem('lastSeenVersion');
 
-  // Marca como visitado
-  localStorage.setItem('visited', 'true');
-
-  // Espera para dar tempo de mostrar mensagem
-  setTimeout(() => {
-    loader.style.opacity = '0';
-    setTimeout(() => loader.remove(), 600);
-  }, 1500);
+  if (seenVersion !== currentVersion) {
+    openUpdates();
+    localStorage.setItem('lastSeenVersion', currentVersion);
+  }
 });
 
 // Bolas caindo

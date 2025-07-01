@@ -36,38 +36,64 @@
     </div>
     <div class="sidebar-content">
       <div class="accordion">
-       <div class="accordion-item">
-        <a href="sobre.html" class="accordion-title">Sobre mim</a>
-     </div>
-       <div class="accordion-item">
-           <button class="accordion-title" onclick="showSoonMessage('Configurações do site')">Configurações do site</button>
+        <div class="accordion-item">
+          <a href="sobre.html" class="accordion-title">Sobre mim</a>
         </div>
-       <div class="accordion-item">
-         <button id="updates-button" class="accordion-title">Últimas Atualizações</button>
-       </div>
+        <div class="accordion-item">
+          <button class="accordion-title" onclick="toggleSettings()">⚙️ Configurações do site</button>
+        </div>
+        <div class="accordion-item">
+          <button id="updates-button" class="accordion-title">Últimas Atualizações</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Configurações -->
+  <div id="settings-modal" class="updates-modal hidden">
+    <div class="modal-content">
+      <h2>⚙️ Configurações do site</h2>
+      <div class="settings-group">
+        <label><input type="checkbox" id="toggleAnimations"> Animações visuais <span onclick="showHelp('toggleAnimations')">❔</span></label>
+        <label><input type="checkbox" id="increaseContrast"> Aumentar contraste <span onclick="showHelp('increaseContrast')">❔</span></label>
+        <label><input type="checkbox" id="preloadUpdates"> Pré-carregar últimas atualizações <span onclick="showHelp('preloadUpdates')">❔</span></label>
+        <label><input type="checkbox" id="enableDevLogs"> Modo Dev Logs <span onclick="showHelp('enableDevLogs')">❔</span></label>
+        <label><input type="checkbox" id="debugConsole"> Mostrar dados de debug <span onclick="showHelp('debugConsole')">❔</span></label>
+        <label><input type="checkbox" id="forceUpdateModal"> Forçar modal de atualização <span onclick="showHelp('forceUpdateModal')">❔</span></label>
+        <label>
+          Idioma:
+          <select id="languageSelect">
+            <option value="pt">Português</option>
+            <option value="en">Inglês</option>
+          </select>
+          <span onclick="showHelp('languageSelect')">❔</span>
+        </label>
+        <label>
+          Estilo de menu:
+          <select id="menuStyle">
+            <option value="fixed">Fixo</option>
+            <option value="floating">Flutuante</option>
+          </select>
+          <span onclick="showHelp('menuStyle')">❔</span>
+        </label>
+        <label><input type="checkbox" id="extremeMinimalMode"> Modo "minimalista extremo" <span onclick="showHelp('extremeMinimalMode')">❔</span></label>
+        <button onclick="closeSettings()">Fechar</button>
       </div>
     </div>
   </div>
 
   <!-- Caixa flutuante de atualização -->
- <div id="updates-modal" class="updates-modal hidden">
-  <div class="modal-content">
-    <h2>Notas de atualização</h2> <!-- título principal fixo -->
-
-    <p><strong>Versão: <span id="version-title"></span></strong></p> <!-- versão atual -->
-
-    <div id="changelog-container"> <!-- container onde vamos inserir os detalhes -->
-      <!-- Aqui o JS vai inserir os <h3>, <ul>, <li>, <p> etc -->
+  <div id="updates-modal" class="updates-modal hidden">
+    <div class="modal-content">
+      <h2>Notas de atualização</h2>
+      <p><strong>Versão: <span id="version-title"></span></strong></p>
+      <div id="changelog-container"></div>
+      <div class="modal-buttons">
+        <button id="prev-version" onclick="showPreviousVersion()">← Anterior</button>
+        <button onclick="closeUpdates()">Ótimo</button>
+        <button id="next-version" onclick="showNextVersion()">Próxima →</button>
+      </div>
     </div>
-
-    <div class="modal-buttons">
-      <button id="prev-version" onclick="showPreviousVersion()">← Anterior</button>
-      <button onclick="closeUpdates()">Ótimo</button>
-      <button id="next-version" onclick="showNextVersion()">Próxima →</button>
-    </div>
-  </div>
-</div>
-
   </div>
 
   <div class="theme-switch">

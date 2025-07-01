@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Preferências salvas
-const animChecked = localStorage.getItem('animationsEnabled') !== 'false';
+const animChecked = localStorage.getItem('animationsEnabled') !== 'true';
 const contrastChecked = localStorage.getItem('contrastEnabled') === 'true';
 const minimalChecked = localStorage.getItem('minimalEnabled') === 'true';
 const savedMenuStyle = localStorage.getItem('menuStyle') || 'fixed';

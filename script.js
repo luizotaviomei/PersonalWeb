@@ -139,9 +139,9 @@ if (minimalChecked) document.body.classList.add('extreme-minimal');
 if (savedMenuStyle === 'floating') {
   document.getElementById('sidebar')?.classList.add('floating-menu');
   const menuStyleEl = document.getElementById('menuStyle');
-  if (menuStyleEl) {
-    menuStyleEl.value = 'floating';
-  }
+if (menuStyleEl) {
+  menuStyleEl.value = 'floating';
+}
 }
 
 const toggleEl = document.getElementById('toggleAnimations');

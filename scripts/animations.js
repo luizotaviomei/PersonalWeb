@@ -1,5 +1,4 @@
-// scripts/animations.js
-export function initSnow() {
+function initSnow() {
   const NUM_BOLAS = 80;
 
   for (let i = 0; i < NUM_BOLAS; i++) {
@@ -12,3 +11,6 @@ export function initSnow() {
     document.body.appendChild(ball);
   }
 }
+
+// Torna acessível globalmente
+window.initSnow = initSnow;

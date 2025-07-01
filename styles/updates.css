@@ -57,21 +57,24 @@ body {
   background-color: #e6e6fa;
 }
 
-.accordion-content {
-  display: none;
-  background-color: #faf5ff;
-  padding: 1rem 1.5rem;
-  border-left: 3px solid #a855f7;
-  border-radius: 0 0 8px 8px;
-  animation: fadeIn 0.3s ease;
-}
-
-.accordion-content.active {
-  display: block;
-}
-
 .accordion-toggle.open {
   background-color: #ddd6fe;
+}
+
+/* AQUI ESTÁ A MUDANÇA */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #faf5ff;
+  padding: 0 1.5rem;
+  border-left: 3px solid #a855f7;
+  border-radius: 0 0 8px 8px;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+
+.accordion-content.open {
+  padding: 1rem 1.5rem;
+  max-height: 800px;
 }
 
 h3 {
@@ -94,12 +97,6 @@ h3 {
   padding-left: 1rem;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsivo */
 @media (max-width: 600px) {
   body {
     padding: 1rem;

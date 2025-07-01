@@ -77,7 +77,11 @@
     </form>
   </div>
 
-  <script src="scripts/config.js"></script>
   <script src="scripts/applySettings.js"></script>
+  <script type="module">
+  import { initSettingsPage, showHelp } from './scripts/config.js';
+  window.showHelp = showHelp; // Torna acessível globalmente para os ícones ❔
+  initSettingsPage();
+</script>
 </body>
 </html>

@@ -1,20 +1,3 @@
-// Loader
-window.addEventListener("load", () => {
-  const updatesButton = document.getElementById('updates-button');
-  if (updatesButton) {
-    updatesButton.onclick = openUpdates;
-  }
-
-  // Sistema de exibição do modal automático por versão
-  const currentVersion = versions[0].version; // Versão mais recente
-  const seenVersion = localStorage.getItem('lastSeenVersion');
-
-  if (seenVersion !== currentVersion) {
-    openUpdates();
-    localStorage.setItem('lastSeenVersion', currentVersion);
-  }
-});
-
 // Bolas caindo
 const NUM_BOLAS = 80;
 for (let i = 0; i < NUM_BOLAS; i++) {
@@ -60,7 +43,7 @@ const versions = [
 
 let currentVersionIndex = 0;
 
-// DOMContentLoaded para tema e digitação
+// DOMContentLoaded para aplicar tema e iniciar digitação
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
   const checkbox = document.querySelector('.switch input');
@@ -83,6 +66,40 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, 100);
   }, 6000);
+});
+
+// Loader + mensagem de boas-vindas + exibição automática do modal
+window.addEventListener("load", () => {
+  // Botão de atualizações
+  const updatesButton = document.getElementById('updates-button');
+  if (updatesButton) {
+    updatesButton.onclick = openUpdates;
+  }
+
+  // Mensagem de boas-vindas
+  const loader = document.getElementById('loader');
+  const loaderMessage = document.getElementById('loader-message');
+
+  const alreadyVisited = localStorage.getItem('visitedBefore');
+  if (alreadyVisited) {
+    loaderMessage.textContent = "Welcome back";
+  } else {
+    loaderMessage.textContent = "Welcome";
+    localStorage.setItem('visitedBefore', 'true');
+  }
+
+  // Exibe modal se for nova versão
+  const currentVersion = versions[0].version;
+  const seenVersion = localStorage.getItem('lastSeenVersion');
+
+  if (seenVersion !== currentVersion) {
+    openUpdates();
+    localStorage.setItem('lastSeenVersion', currentVersion);
+  }
+
+  // Some o loader
+  loader.style.opacity = '0';
+  setTimeout(() => loader.remove(), 500);
 });
 
 function toggleTheme(checkbox) {
@@ -108,13 +125,11 @@ function closeUpdates() {
 }
 
 function showVersion(index) {
-  const modal = document.getElementById("updates-modal");
   const versionData = versions[index];
-
   document.getElementById("version-title").textContent = versionData.version;
 
   const container = document.getElementById("changelog-container");
-  container.innerHTML = ""; // Limpa TUDO dentro da caixa
+  container.innerHTML = "";
 
   const sections = [
     { title: "Implementado", items: versionData.implemented },
@@ -231,9 +246,3 @@ function closeSidebar() {
   document.getElementById('sidebar-overlay').style.display = 'none';
   document.querySelector('.menu-button').classList.remove('hidden');
 }
-window.addEventListener("load", () => {
-  const updatesButton = document.getElementById('updates-button');
-  if (updatesButton) {
-    updatesButton.onclick = openUpdates;
-  }
-});

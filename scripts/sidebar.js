@@ -10,6 +10,5 @@ function closeSidebar() {
   document.querySelector(".menu-button").style.display = "flex";
 }
 
-// Deixa disponível globalmente
 window.toggleSidebar = toggleSidebar;
 window.closeSidebar = closeSidebar;

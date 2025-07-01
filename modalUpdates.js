@@ -1,0 +1,1 @@
+// Conteúdo de openUpdates, closeUpdates e showVersion irá aqui.

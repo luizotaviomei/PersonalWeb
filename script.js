@@ -221,3 +221,10 @@ function closeSidebar() {
   document.getElementById('sidebar-overlay').style.display = 'none';
   document.querySelector('.menu-button').classList.remove('hidden');
 }
+// Ativa o botão de "Últimas Atualizações"
+document.addEventListener("DOMContentLoaded", () => {
+  const updatesButton = document.getElementById('updates-button');
+  if (updatesButton) {
+    updatesButton.addEventListener('click', openUpdates);
+  }
+});

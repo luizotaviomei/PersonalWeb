@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const settingsBtn = document.getElementById('settings-button');
-  if (settingsBtn && typeof toggleSettings === 'function') {
-    settingsBtn.addEventListener('click', toggleSettings);
-  }
-});
+if (settingsBtn) {
+  settingsBtn.addEventListener('click', () => {
+    window.location.href = 'config.html';
+  });
+}

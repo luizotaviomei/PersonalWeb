@@ -1,5 +1,3 @@
-// loader.js
-
 export function initLoader() {
   window.addEventListener("load", () => {
     const loader = document.getElementById('loader');

@@ -121,19 +121,23 @@ window.addEventListener("load", () => {
 
   setTimeout(() => {
     loader.style.opacity = '0';
+
     setTimeout(() => {
       loader.remove();
       localStorage.setItem('visitedBefore', 'true');
 
-      let i = 0;
-      const interval = setInterval(() => {
-        if (i < welcomeText.length) {
-          typingElement.textContent += welcomeText[i];
-          i++;
-        } else {
-          clearInterval(interval);
-        }
-      }, 100);
+      // Só faz a animação de digitação se o elemento existir
+      if (typingElement) {
+        let i = 0;
+        const interval = setInterval(() => {
+          if (i < welcomeText.length) {
+            typingElement.textContent += welcomeText[i];
+            i++;
+          } else {
+            clearInterval(interval);
+          }
+        }, 100);
+      }
     }, 500);
   }, 1000);
 });

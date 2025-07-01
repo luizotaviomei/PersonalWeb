@@ -1,11 +1,11 @@
 // Loader
-// Modal automático se versão for nova
 window.addEventListener("load", () => {
   const updatesButton = document.getElementById('updates-button');
   if (updatesButton) {
     updatesButton.onclick = openUpdates;
   }
 
+  // Sistema de exibição do modal automático por versão
   const currentVersion = versions[0].version; // Versão mais recente
   const seenVersion = localStorage.getItem('lastSeenVersion');
 

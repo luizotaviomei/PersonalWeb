@@ -28,43 +28,63 @@ body {
 }
 .updates-modal {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001;
+}
+
+.updates-modal.hidden {
+  display: none;
+}
+
+.modal-content {
   background-color: var(--bg-color);
   color: var(--text-color);
   padding: 30px;
   border-radius: 15px;
   box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  z-index: 3000;
   text-align: center;
   font-family: 'Fira Code', monospace;
   max-width: 320px;
   width: 90%;
 }
-.updates-modal ul.changelog {
+
+.modal-content ul.changelog {
   list-style: none;
   padding-left: 0;
   text-align: left;
   margin-top: 15px;
 }
 
-.updates-modal ul.changelog li {
+.modal-content ul.changelog li {
   margin-bottom: 8px;
   font-size: 0.9rem;
   padding-left: 1em;
   position: relative;
 }
 
-.updates-modal ul.changelog li::before {
+.modal-content ul.changelog li::before {
   content: '•';
   position: absolute;
   left: 0;
   color: #a855f7;
 }
 
-.updates-modal button {
+.modal-buttons {
   margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modal-buttons button {
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
@@ -75,8 +95,13 @@ body {
   transition: background-color 0.3s;
 }
 
-.updates-modal button:hover {
+.modal-buttons button:hover {
   background-color: #9333ea;
+}
+
+.modal-buttons button:disabled {
+  background-color: #ccc;
+  cursor: default;
 }
 
 .hidden {

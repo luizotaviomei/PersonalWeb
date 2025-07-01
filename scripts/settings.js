@@ -1,3 +1,16 @@
+function toggleSettings() {
+  const modal = document.getElementById('settings-modal');
+  if (modal) {
+    modal.classList.toggle('hidden');
+  }
+}
+
+function closeSettings() {
+  const modal = document.getElementById('settings-modal');
+  if (modal) {
+    modal.classList.add('hidden');
+  }
+}
 // Fallback seguro para versões
 const currentVersion = (typeof versions !== 'undefined' && versions.length > 0)
   ? versions[0].version
@@ -13,11 +26,6 @@ const settings = {
     const enabled = document.getElementById('increaseContrast')?.checked;
     document.body.classList.toggle('high-contrast', enabled);
     localStorage.setItem('contrastEnabled', enabled);
-  },
-  extremeMinimalMode: () => {
-    const enabled = document.getElementById('extremeMinimalMode')?.checked;
-    document.body.classList.toggle('extreme-minimal', enabled);
-    localStorage.setItem('minimalEnabled', enabled);
   },
   menuStyle: () => {
     const style = document.getElementById('menuStyle')?.value || 'fixed';

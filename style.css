@@ -521,7 +521,7 @@ body {
   }
 
    .menu-button {
-    top: 12px; /* antes era 8px */
+    top: 20px; /* antes era 8px */
     left: 12px;
     width: 26px;
     height: 20px;
@@ -532,7 +532,7 @@ body {
   }
 
   .theme-switch {
-    top: 12px; /* antes era 8px */
+    top: 20px; /* antes era 8px */
     right: 12px;
   }
   

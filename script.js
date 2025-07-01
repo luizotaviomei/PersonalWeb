@@ -11,7 +11,7 @@ for (let i = 0; i < NUM_BOLAS; i++) {
   document.body.appendChild(ball);
 }
 
-// Versões do changelog com novo formato
+// Versões do changelog
 const versions = [
   {
     version: "vBeta 1.0",
@@ -43,7 +43,7 @@ const versions = [
 
 let currentVersionIndex = 0;
 
-// DOMContentLoaded para aplicar tema e iniciar digitação
+// DOMContentLoaded → configura tema e digitação
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
   const checkbox = document.querySelector('.switch input');
@@ -52,14 +52,18 @@ document.addEventListener('DOMContentLoaded', () => {
     checkbox.checked = true;
   }
 
-  const text = "Welcome to Link Hub...";
   const typingElement = document.getElementById("typing");
+
+  // Exibe "Welcome" ou "Welcome back"
+  const firstVisit = localStorage.getItem('visitedBefore');
+  const welcomeText = firstVisit ? "Welcome back to Link Hub..." : "Welcome to Link Hub...";
+  localStorage.setItem('visitedBefore', 'true');
 
   setTimeout(() => {
     let i = 0;
     const interval = setInterval(() => {
-      if (i < text.length) {
-        typingElement.textContent += text[i];
+      if (i < welcomeText.length) {
+        typingElement.textContent += welcomeText[i];
         i++;
       } else {
         clearInterval(interval);
@@ -68,36 +72,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 6000);
 });
 
-// Loader + mensagem de boas-vindas + exibição automática do modal
+// Loader + modal auto
 window.addEventListener("load", () => {
-  // Botão de atualizações
+  const loader = document.getElementById('loader');
   const updatesButton = document.getElementById('updates-button');
+
   if (updatesButton) {
     updatesButton.onclick = openUpdates;
   }
 
-  // Mensagem de boas-vindas
-  const loader = document.getElementById('loader');
-  const loaderMessage = document.getElementById('loader-message');
-
-  const alreadyVisited = localStorage.getItem('visitedBefore');
-  if (alreadyVisited) {
-    loaderMessage.textContent = "Welcome back";
-  } else {
-    loaderMessage.textContent = "Welcome";
-    localStorage.setItem('visitedBefore', 'true');
-  }
-
-  // Exibe modal se for nova versão
+  // Modal só aparece se for nova versão
   const currentVersion = versions[0].version;
   const seenVersion = localStorage.getItem('lastSeenVersion');
-
   if (seenVersion !== currentVersion) {
     openUpdates();
     localStorage.setItem('lastSeenVersion', currentVersion);
   }
 
-  // Some o loader
+  // Remove loader com fade
   loader.style.opacity = '0';
   setTimeout(() => loader.remove(), 500);
 });
@@ -126,6 +118,7 @@ function closeUpdates() {
 
 function showVersion(index) {
   const versionData = versions[index];
+
   document.getElementById("version-title").textContent = versionData.version;
 
   const container = document.getElementById("changelog-container");

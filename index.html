@@ -50,13 +50,15 @@
 
   <!-- Caixa flutuante de atualização -->
   <div id="updates-modal" class="updates-modal hidden">
-  <h2>Histórico de Atualizações</h2>
-  <p><strong>Versão: <span id="version-title"></span></strong></p>
-  <ul class="changelog"></ul>
-  <div style="margin-top: 20px; display: flex; justify-content: space-between; gap: 10px;">
-    <button id="prev-version" onclick="showPreviousVersion()">← Anterior</button>
-    <button onclick="closeUpdates()">Ótimo</button>
-    <button id="next-version" onclick="showNextVersion()">Próxima →</button>
+  <div class="modal-content">
+    <h2>Histórico de Atualizações</h2>
+    <p><strong>Versão: <span id="version-title"></span></strong></p>
+    <ul class="changelog"></ul>
+    <div class="modal-buttons">
+      <button id="prev-version" onclick="showPreviousVersion()">← Anterior</button>
+      <button onclick="closeUpdates()">Ótimo</button>
+      <button id="next-version" onclick="showNextVersion()">Próxima →</button>
+    </div>
   </div>
 </div>
  

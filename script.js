@@ -164,10 +164,8 @@ for (const key in settings) {
     const saved = localStorage.getItem(key);
     if (saved) el.value = saved;
   }
-
-  // Só executa se o elemento existe
   settings[key]();
- }
+} 
 });
 window.addEventListener("load", () => {
   const loader = document.getElementById('loader');

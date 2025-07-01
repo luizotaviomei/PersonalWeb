@@ -18,26 +18,32 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Aplicar configurações do settings.js
-  for (const key in settings) {
-    const el = document.getElementById(key);
-    if (!el) continue;
+  if (typeof settings !== 'undefined') {
+    for (const key in settings) {
+      const el = document.getElementById(key);
+      if (!el) continue;
 
-    el.addEventListener('change', settings[key]);
+      el.addEventListener('change', settings[key]);
 
-    if (el.type === 'checkbox') {
-      el.checked = localStorage.getItem(key) === 'true';
-    } else if (el.tagName === 'SELECT') {
-      const saved = localStorage.getItem(key);
-      if (saved) el.value = saved;
+      if (el.type === 'checkbox') {
+        el.checked = localStorage.getItem(key) === 'true';
+      } else if (el.tagName === 'SELECT') {
+        const saved = localStorage.getItem(key);
+        if (saved) el.value = saved;
+      }
+
+      settings[key](); // Aplica efeito
     }
-
-    settings[key](); // Aplica efeito
   }
 
   // Corrigir botões de menu
   const updatesBtn = document.getElementById('updates-button');
-  if (updatesBtn) updatesBtn.addEventListener('click', openUpdates);
+  if (updatesBtn && typeof openUpdates === 'function') {
+    updatesBtn.addEventListener('click', openUpdates);
+  }
 
   const settingsBtn = document.getElementById('settings-button');
-  if (settingsBtn) settingsBtn.addEventListener('click', toggleSettings);
+  if (settingsBtn && typeof toggleSettings === 'function') {
+    settingsBtn.addEventListener('click', toggleSettings);
+  }
 });

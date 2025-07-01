@@ -127,15 +127,16 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Preferências salvas
-  const animChecked = localStorage.getItem('animationsEnabled') !== 'false';
-  const contrastChecked = localStorage.getItem('contrastEnabled') === 'true';
-  const minimalChecked = localStorage.getItem('minimalEnabled') === 'true';
-  const menuStyle = localStorage.getItem('menuStyle') || 'fixed';
+const animChecked = localStorage.getItem('animationsEnabled') !== 'false';
+const contrastChecked = localStorage.getItem('contrastEnabled') === 'true';
+const minimalChecked = localStorage.getItem('minimalEnabled') === 'true';
+const savedMenuStyle = localStorage.getItem('menuStyle') || 'fixed';
 
-  if (!animChecked) document.body.classList.add('no-animations');
-  if (contrastChecked) document.body.classList.add('high-contrast');
-  if (minimalChecked) document.body.classList.add('extreme-minimal');
- if (menuStyle === 'floating') {
+if (!animChecked) document.body.classList.add('no-animations');
+if (contrastChecked) document.body.classList.add('high-contrast');
+if (minimalChecked) document.body.classList.add('extreme-minimal');
+
+if (savedMenuStyle === 'floating') {
   document.getElementById('sidebar')?.classList.add('floating-menu');
   const menuStyleEl = document.getElementById('menuStyle');
   if (menuStyleEl) {
@@ -152,7 +153,7 @@ if (contrastEl) contrastEl.checked = contrastChecked;
 const minimalEl = document.getElementById('extremeMinimalMode');
 if (minimalEl) minimalEl.checked = minimalChecked;
 
-  for (const key in settings) {
+for (const key in settings) {
   const el = document.getElementById(key);
   if (!el) continue;
   el.addEventListener('change', settings[key]);
@@ -167,8 +168,6 @@ if (minimalEl) minimalEl.checked = minimalChecked;
   // Só executa se o elemento existe
   settings[key]();
 }
-});
-
 window.addEventListener("load", () => {
   const loader = document.getElementById('loader');
   const typingElement = document.getElementById("typing");

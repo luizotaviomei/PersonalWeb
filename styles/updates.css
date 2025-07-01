@@ -2,6 +2,9 @@
   --bg-color: #0b0b0b;
   --text-color: #fff;
   --accent-color: #a259ff;
+  --panel-bg: #121212;
+  --accordion-bg: #1a1a1a;
+  --accordion-hover: #292929;
 }
 
 body {
@@ -10,6 +13,7 @@ body {
   background-color: var(--bg-color);
   font-family: 'Fira Code', monospace;
   color: var(--text-color);
+  line-height: 1.6;
 }
 
 #back-button {
@@ -19,29 +23,35 @@ body {
   background: none;
   border: 1px solid var(--accent-color);
   color: var(--accent-color);
-  padding: 5px 10px;
+  padding: 5px 12px;
   border-radius: 8px;
   font-size: 0.9rem;
   cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+
+#back-button:hover {
+  background: var(--accent-color);
+  color: var(--bg-color);
 }
 
 .page-title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: var(--accent-color);
   margin-bottom: 2rem;
 }
 
 .updates-container {
-  max-width: 600px;
+  max-width: 650px;
   margin: auto;
 }
 
 .accordion {
-  background-color: #1a1a1a;
+  background-color: var(--accordion-bg);
   color: var(--accent-color);
   cursor: pointer;
-  padding: 15px;
+  padding: 16px;
   width: 100%;
   border: none;
   text-align: left;
@@ -53,13 +63,13 @@ body {
 }
 
 .accordion:hover {
-  background-color: #292929;
+  background-color: var(--accordion-hover);
 }
 
 .panel {
-  background-color: #121212;
+  background-color: var(--panel-bg);
   color: var(--text-color);
-  padding: 0 15px;
+  padding: 0 18px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
@@ -68,16 +78,31 @@ body {
   margin-bottom: 1rem;
 }
 
+.panel p {
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 600px) {
-  .update-container {
-    padding: 2rem 1rem;
+  body {
+    padding: 1.5rem 0.8rem;
   }
 
-  h1 {
-    font-size: 1.5rem;
+  #back-button {
+    font-size: 0.8rem;
+    padding: 4px 10px;
   }
 
-  .update-entry h2 {
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .accordion {
     font-size: 1rem;
+    padding: 14px;
+  }
+
+  .panel p {
+    font-size: 0.9rem;
   }
 }

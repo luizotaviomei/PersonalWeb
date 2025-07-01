@@ -40,10 +40,10 @@
           <a href="sobre.html" class="accordion-title">Sobre mim</a>
         </div>
         <div class="accordion-item">
-          <button id="settings-button" class="accordion-title">⚙️ Configurações do site</button>
+          <button id="settings-button" class="accordion-title" onclick="toggleSettings()">⚙️ Configurações do site</button>
         </div>
         <div class="accordion-item">
-           <a href="update.html" class="accordion-title">Últimas Atualizações</a>
+          <a href="update.html" class="accordion-title">Últimas Atualizações</a>
         </div>
       </div>
     </div>
@@ -105,11 +105,6 @@
             </select>
           </label>
           <span onclick="showHelp('menuStyle')">❔</span>
-        </div>
-
-        <div class="settings-row">
-          <label><input type="checkbox" id="extremeMinimalMode"> <span>Modo "minimalista extremo"</span></label>
-          <span onclick="showHelp('extremeMinimalMode')">❔</span>
         </div>
 
         <button type="button" onclick="closeSettings()">Fechar</button>

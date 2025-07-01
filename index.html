@@ -50,15 +50,15 @@
 
   <!-- Caixa flutuante de atualização -->
   <div id="updates-modal" class="updates-modal hidden">
-    <h2>Última Atualização</h2>
-    <p><strong>Versão:</strong> vBeta 1.0</p>
-    <ul class="changelog">
-      <li>✔ Layout inicial com tema escuro/claro</li>
-      <li>✔ Loader animado com bolas caindo</li>
-      <li>✔ Animação de digitação</li>
-      <li>✔ Menu lateral com abas e modal</li>
-      <li>✔ Botão de tema com ícones</li>
-    </ul>
+  <h2>Histórico de Atualizações</h2>
+  <p><strong>Versão: <span id="version-title"></span></strong></p>
+  <ul class="changelog"></ul>
+  <div style="margin-top: 20px; display: flex; justify-content: space-between; gap: 10px;">
+    <button id="prev-version" onclick="showPreviousVersion()">← Anterior</button>
+    <button onclick="closeUpdates()">Ótimo</button>
+    <button id="next-version" onclick="showNextVersion()">Próxima →</button>
+  </div>
+</div>
  
     <div style="margin-top: 20px; display: flex; justify-content: space-between; gap: 10px;">
   <button id="prev-version" onclick="showPreviousVersion()">← Anterior</button>

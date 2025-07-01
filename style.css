@@ -558,3 +558,34 @@ body {
   animation: fadeIn 1.5s ease-in-out;
   text-align: center;
 }
+.sobre-container {
+  max-width: 700px;
+  margin: 80px auto;
+  padding: 20px;
+  color: var(--text-color, #fff);
+  font-family: 'Fira Code', monospace;
+  text-align: left;
+}
+
+.sobre-container h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.sobre-container p {
+  margin-bottom: 1em;
+  line-height: 1.6;
+}
+
+.voltar {
+  display: inline-block;
+  margin-bottom: 1.5em;
+  color: #888;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.voltar:hover {
+  color: #fff;
+}

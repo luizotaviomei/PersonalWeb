@@ -50,37 +50,74 @@
   </div>
 
   <!-- Modal de Configurações -->
-  <div id="settings-modal" class="updates-modal hidden">
-    <div class="modal-content">
-      <h2>⚙️ Configurações do site</h2>
-      <div class="settings-group">
-        <label><input type="checkbox" id="toggleAnimations"> Animações visuais <span onclick="showHelp('toggleAnimations')">❔</span></label>
-        <label><input type="checkbox" id="increaseContrast"> Aumentar contraste <span onclick="showHelp('increaseContrast')">❔</span></label>
-        <label><input type="checkbox" id="preloadUpdates"> Pré-carregar últimas atualizações <span onclick="showHelp('preloadUpdates')">❔</span></label>
-        <label><input type="checkbox" id="enableDevLogs"> Modo Dev Logs <span onclick="showHelp('enableDevLogs')">❔</span></label>
-        <label><input type="checkbox" id="debugConsole"> Mostrar dados de debug <span onclick="showHelp('debugConsole')">❔</span></label>
-        <label><input type="checkbox" id="forceUpdateModal"> Forçar modal de atualização <span onclick="showHelp('forceUpdateModal')">❔</span></label>
+  <!-- Modal de Configurações -->
+<div id="settings-modal" class="updates-modal hidden">
+  <div class="modal-content">
+    <h2>Configurações do site</h2>
+    <form class="settings-group">
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="toggleAnimations"> <span>Animações visuais</span></label>
+        <span onclick="showHelp('toggleAnimations')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="increaseContrast"> <span>Aumentar contraste</span></label>
+        <span onclick="showHelp('increaseContrast')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="preloadUpdates"> <span>Pré-carregar atualizações</span></label>
+        <span onclick="showHelp('preloadUpdates')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="enableDevLogs"> <span>Modo Dev Logs</span></label>
+        <span onclick="showHelp('enableDevLogs')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="debugConsole"> <span>Mostrar dados de debug</span></label>
+        <span onclick="showHelp('debugConsole')">❔</span>
+      </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="forceUpdateModal"> <span>Forçar modal de atualização</span></label>
+        <span onclick="showHelp('forceUpdateModal')">❔</span>
+      </div>
+
+      <div class="settings-row">
         <label>
-          Idioma:
+          <span>Idioma:</span>
           <select id="languageSelect">
             <option value="pt">Português</option>
             <option value="en">Inglês</option>
           </select>
-          <span onclick="showHelp('languageSelect')">❔</span>
         </label>
+        <span onclick="showHelp('languageSelect')">❔</span>
+      </div>
+
+      <div class="settings-row">
         <label>
-          Estilo de menu:
+          <span>Estilo de menu:</span>
           <select id="menuStyle">
             <option value="fixed">Fixo</option>
             <option value="floating">Flutuante</option>
           </select>
-          <span onclick="showHelp('menuStyle')">❔</span>
         </label>
-        <label><input type="checkbox" id="extremeMinimalMode"> Modo "minimalista extremo" <span onclick="showHelp('extremeMinimalMode')">❔</span></label>
-        <button onclick="closeSettings()">Fechar</button>
+        <span onclick="showHelp('menuStyle')">❔</span>
       </div>
-    </div>
+
+      <div class="settings-row">
+        <label><input type="checkbox" id="extremeMinimalMode"> <span>Modo "minimalista extremo"</span></label>
+        <span onclick="showHelp('extremeMinimalMode')">❔</span>
+      </div>
+
+      <button type="button" onclick="closeSettings()">Fechar</button>
+    </form>
   </div>
+</div>
+
 
   <!-- Caixa flutuante de atualização -->
   <div id="updates-modal" class="updates-modal hidden">

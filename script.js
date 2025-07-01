@@ -18,25 +18,33 @@ for (let i = 0; i < NUM_BOLAS; i++) {
   document.body.appendChild(ball);
 }
 
-// Versões do changelog
+// Versões do changelog com novo formato
 const versions = [
   {
     version: "vBeta 1.0",
-    changes: [
-      "✔ Layout inicial com tema escuro/claro",
-      "✔ Loader animado com bolas caindo",
-      "✔ Animação de digitação",
-      "✔ Menu lateral com abas e modal",
-      "✔ Botão de tema com ícones"
-    ]
+    implemented: [
+      "Layout inicial com tema escuro/claro",
+      "Loader animado com bolas caindo",
+      "Animação de digitação com texto 'Welcome to Link Hub...'",
+      "Menu lateral com abas e modal",
+      "Botão de tema com ícones"
+    ],
+    changed: [
+      "Estilo do botão do menu animado"
+    ],
+    removed: [],
+    note: "Primeira versão completa e funcional. Aguardando feedbacks para melhorias futuras."
   },
   {
     version: "vBeta 0.9",
-    changes: [
-      "✔ Protótipo inicial com tema escuro",
-      "✔ Base HTML/CSS minimalista",
-      "✔ Primeira versão dos ícones de redes sociais"
-    ]
+    implemented: [
+      "Protótipo inicial com tema escuro",
+      "Base HTML/CSS minimalista",
+      "Primeira versão dos ícones de redes sociais"
+    ],
+    changed: [],
+    removed: [],
+    note: "Protótipo focado em estrutura inicial e testes visuais."
   }
 ];
 
@@ -100,11 +108,34 @@ function showVersion(index) {
 
   const ul = modal.querySelector("ul.changelog");
   ul.innerHTML = "";
-  versionData.changes.forEach(change => {
-    const li = document.createElement("li");
-    li.textContent = change;
-    ul.appendChild(li);
+
+  const sections = [
+    { title: "Implementado:", items: versionData.implemented },
+    { title: "Alterado:", items: versionData.changed },
+    { title: "Removido:", items: versionData.removed }
+  ];
+
+  sections.forEach(section => {
+    if (section.items.length > 0) {
+      const header = document.createElement("li");
+      header.innerHTML = `<strong>${section.title}</strong>`;
+      ul.appendChild(header);
+      section.items.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = "• " + item;
+        ul.appendChild(li);
+      });
+    }
   });
+
+  if (versionData.note) {
+    const noteHeader = document.createElement("li");
+    noteHeader.innerHTML = `<strong>Nota do desenvolvedor:</strong>`;
+    ul.appendChild(noteHeader);
+    const noteText = document.createElement("li");
+    noteText.textContent = versionData.note;
+    ul.appendChild(noteText);
+  }
 
   document.getElementById("prev-version").disabled = index === versions.length - 1;
   document.getElementById("next-version").disabled = index === 0;

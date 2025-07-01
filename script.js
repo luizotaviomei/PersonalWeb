@@ -52,7 +52,6 @@ let currentVersionIndex = 0;
 
 // DOMContentLoaded para tema e digitação
 document.addEventListener('DOMContentLoaded', () => {
-  // Aplica tema salvo
   const savedTheme = localStorage.getItem('theme');
   const checkbox = document.querySelector('.switch input');
   if (savedTheme === 'light') {
@@ -60,7 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     checkbox.checked = true;
   }
 
-  // Animação de digitação
   const text = "Welcome to Link Hub...";
   const typingElement = document.getElementById("typing");
 
@@ -77,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }, 6000);
 });
 
-// Alternância de tema
 function toggleTheme(checkbox) {
   if (checkbox.checked) {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -88,7 +85,6 @@ function toggleTheme(checkbox) {
   }
 }
 
-// Modais de atualizações
 function openUpdates() {
   showVersion(currentVersionIndex);
   document.getElementById("updates-modal").classList.remove("hidden");
@@ -106,35 +102,42 @@ function showVersion(index) {
   const versionData = versions[index];
   document.getElementById("version-title").textContent = versionData.version;
 
-  const ul = modal.querySelector("ul.changelog");
-  ul.innerHTML = "";
+  const container = document.getElementById("changelog-container");
+  container.innerHTML = "";
+
+  const ul = document.createElement("ul");
+  ul.classList.add("changelog");
 
   const sections = [
-    { title: "Implementado:", items: versionData.implemented },
-    { title: "Alterado:", items: versionData.changed },
-    { title: "Removido:", items: versionData.removed }
+    { title: "Implementado", items: versionData.implemented },
+    { title: "Alterado", items: versionData.changed },
+    { title: "Removido", items: versionData.removed }
   ];
 
   sections.forEach(section => {
     if (section.items.length > 0) {
-      const header = document.createElement("li");
-      header.innerHTML = `<strong>${section.title}</strong>`;
-      ul.appendChild(header);
+      const title = document.createElement("h3");
+      title.textContent = section.title + ":";
+      container.appendChild(title);
+
       section.items.forEach(item => {
         const li = document.createElement("li");
-        li.textContent = "• " + item;
+        li.textContent = item;
         ul.appendChild(li);
       });
     }
   });
 
+  container.appendChild(ul);
+
   if (versionData.note) {
-    const noteHeader = document.createElement("li");
-    noteHeader.innerHTML = `<strong>Nota do desenvolvedor:</strong>`;
-    ul.appendChild(noteHeader);
-    const noteText = document.createElement("li");
+    const noteTitle = document.createElement("h3");
+    noteTitle.textContent = "Nota do desenvolvedor:";
+    container.appendChild(noteTitle);
+
+    const noteText = document.createElement("p");
     noteText.textContent = versionData.note;
-    ul.appendChild(noteText);
+    container.appendChild(noteText);
   }
 
   document.getElementById("prev-version").disabled = index === versions.length - 1;
@@ -155,7 +158,6 @@ function showNextVersion() {
   }
 }
 
-// Modal temporário de "Indisponível"
 function showUnavailableMessage(event) {
   event.preventDefault();
   const overlay = document.createElement('div');
@@ -182,7 +184,6 @@ function showUnavailableMessage(event) {
   document.body.appendChild(overlay);
 }
 
-// Modal temporário de "Em breve"
 function showSoonMessage(title) {
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
@@ -208,7 +209,6 @@ function showSoonMessage(title) {
   document.body.appendChild(overlay);
 }
 
-// Menu lateral
 function toggleSidebar() {
   document.getElementById('sidebar').style.left = '0';
   document.getElementById('sidebar-overlay').style.display = 'block';

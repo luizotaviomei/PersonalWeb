@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Recupera e aplica o tema salvo
+  // Tema
   const checkbox = document.querySelector('.switch input');
   const savedTheme = localStorage.getItem('theme');
   if (savedTheme === 'light') {
@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkbox) checkbox.checked = true;
   }
 
-  // Substitui o botão "Sobre mim" por um link, caso ainda seja um botão
+  // Corrigir botão "Sobre mim"
   const sobreBtn = document.querySelector('.accordion-item button.accordion-title');
   if (sobreBtn && sobreBtn.textContent.includes('Sobre mim')) {
     const newLink = document.createElement('a');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
   }
 
-  // Sincroniza os elementos de configuração com localStorage
+  // Aplicar configurações do settings.js
   for (const key in settings) {
     const el = document.getElementById(key);
     if (!el) continue;
@@ -31,17 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (saved) el.value = saved;
     }
 
-    settings[key]();
+    settings[key](); // Aplica efeito
   }
 
-  // Corrige funcionamento dos botões do menu lateral
+  // Corrigir botões de menu
   const updatesBtn = document.getElementById('updates-button');
-  if (updatesBtn) {
-    updatesBtn.addEventListener('click', openUpdates);
-  }
+  if (updatesBtn) updatesBtn.addEventListener('click', openUpdates);
 
   const settingsBtn = document.getElementById('settings-button');
-  if (settingsBtn) {
-    settingsBtn.addEventListener('click', toggleSettings);
-  }
+  if (settingsBtn) settingsBtn.addEventListener('click', toggleSettings);
 });

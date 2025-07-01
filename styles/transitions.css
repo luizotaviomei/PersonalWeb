@@ -1,3 +1,42 @@
+/* === Loader girando === */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === Texto com fadeIn (usado em .fade-in e delays controlados no JS) === */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* === Fade out do texto de introdução "Tudo em só um lugar" === */
+@keyframes fadeOutIntro {
+  0% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; display: none; }
+}
+
+/* === Animação do cursor piscando na digitação === */
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* === Bolinhas caindo na diagonal === */
+@keyframes snow {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-30vw, 110vh); }
+}
+
+/* === Utilitários de delay com fadeIn === */
+.container.delay-6s {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 6s forwards;
+}
+
+.container.delay-1s {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 1s forwards;
+}
 @keyframes spin {
   to { transform: rotate(360deg); }
 }

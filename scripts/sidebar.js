@@ -1,10 +1,15 @@
-function toggleSidebar() {
-  document.getElementById('sidebar').style.left = '0';
-  document.getElementById('sidebar-overlay').style.display = 'block';
-  document.querySelector('.menu-button').classList.add('hidden');
+// scripts/sidebar.js
+export function toggleSidebar() {
+  document.getElementById("sidebar").classList.add("open");
+  document.getElementById("sidebar-overlay").style.display = "block";
+  document.querySelector(".menu-button").style.display = "none";
 }
-function closeSidebar() {
-  document.getElementById('sidebar').style.left = '-300px';
-  document.getElementById('sidebar-overlay').style.display = 'none';
-  document.querySelector('.menu-button').classList.remove('hidden');
+
+export function closeSidebar() {
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("sidebar-overlay").style.display = "none";
+  document.querySelector(".menu-button").style.display = "flex";
 }
+
+window.toggleSidebar = toggleSidebar;
+window.closeSidebar = closeSidebar;

@@ -4,6 +4,8 @@ window.addEventListener('load', () => {
   loader.style.opacity = '0';
   setTimeout(() => loader.remove(), 500);
 });
+
+// Bolas caindo
 const NUM_BOLAS = 80;
 for (let i = 0; i < NUM_BOLAS; i++) {
   const ball = document.createElement('div');
@@ -15,22 +17,8 @@ for (let i = 0; i < NUM_BOLAS; i++) {
   ball.style.width = ball.style.height = `${4 + Math.random() * 6}px`;
   document.body.appendChild(ball);
 }
-document.addEventListener('DOMContentLoaded', () => {
-  const text = "Welcome to Link Hub...";
-  const typingElement = document.getElementById("typing");
 
-  setTimeout(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < text.length) {
-        typingElement.textContent += text[i];
-        i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
-  }, 6000); // espera o fadeOut do #intro
-});
+// Versões do changelog
 const versions = [
   {
     version: "vBeta 1.0",
@@ -54,9 +42,51 @@ const versions = [
 
 let currentVersionIndex = 0;
 
+// DOMContentLoaded para tema e digitação
+document.addEventListener('DOMContentLoaded', () => {
+  // Aplica tema salvo
+  const savedTheme = localStorage.getItem('theme');
+  const checkbox = document.querySelector('.switch input');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    checkbox.checked = true;
+  }
+
+  // Animação de digitação
+  const text = "Welcome to Link Hub...";
+  const typingElement = document.getElementById("typing");
+
+  setTimeout(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        typingElement.textContent += text[i];
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+  }, 6000);
+});
+
+// Alternância de tema
+function toggleTheme(checkbox) {
+  if (checkbox.checked) {
+    document.documentElement.setAttribute('data-theme', 'light');
+    localStorage.setItem('theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+  }
+}
+
+// Modais de atualizações
 function openUpdates() {
   showVersion(currentVersionIndex);
   document.getElementById("updates-modal").classList.remove("hidden");
+  setTimeout(() => {
+    document.querySelector('.modal-buttons button:nth-child(2)')?.focus();
+  }, 100);
 }
 
 function closeUpdates() {
@@ -76,7 +106,6 @@ function showVersion(index) {
     ul.appendChild(li);
   });
 
-  // Controla estado dos botões
   document.getElementById("prev-version").disabled = index === versions.length - 1;
   document.getElementById("next-version").disabled = index === 0;
 }
@@ -95,10 +124,7 @@ function showNextVersion() {
   }
 }
 
-function closeUpdates() {
-  document.getElementById("updates-modal").classList.add("hidden");
-}
-
+// Modal temporário de "Indisponível"
 function showUnavailableMessage(event) {
   event.preventDefault();
   const overlay = document.createElement('div');
@@ -125,6 +151,7 @@ function showUnavailableMessage(event) {
   document.body.appendChild(overlay);
 }
 
+// Modal temporário de "Em breve"
 function showSoonMessage(title) {
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
@@ -150,14 +177,7 @@ function showSoonMessage(title) {
   document.body.appendChild(overlay);
 }
 
-function toggleTheme(checkbox) {
-  if (checkbox.checked) {
-    document.documentElement.setAttribute('data-theme', 'light');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-  }
-}
-
+// Menu lateral
 function toggleSidebar() {
   document.getElementById('sidebar').style.left = '0';
   document.getElementById('sidebar-overlay').style.display = 'block';

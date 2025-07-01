@@ -6,6 +6,44 @@ body {
   padding: 2rem;
   box-sizing: border-box;
 }
+/* Tema claro */
+:root[data-theme='light'] {
+  --bg-color: #fff;
+  --text-color: #111;
+  --accent-color: #6b21a8;
+  --panel-bg: #f9f9ff;
+}
+
+:root:not([data-theme='light']) {
+  --bg-color: #09090b;
+  --text-color: #f1f1f1;
+  --accent-color: #a855f7;
+  --panel-bg: #1e1b2f;
+}
+
+/* Aplicando variáveis */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.accordion-toggle {
+  background-color: var(--panel-bg);
+  color: var(--accent-color);
+}
+
+.accordion-toggle:hover {
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+.accordion-content {
+  background-color: var(--panel-bg);
+  border-left: 3px solid var(--accent-color);
+}
+
+h3, .page-title {
+  color: var(--accent-color);
+}
 
 .page-title {
   text-align: center;

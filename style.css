@@ -35,8 +35,16 @@ body {
   filter: contrast(1.5) brightness(1.1);
 }
 
-.extreme-minimal .hide-if-minimal {
-  display: none !important;
+.extreme-minimal .bola,
+.extreme-minimal #typing,
+.extreme-minimal .decorativo {
+  display: none; /* só esses elementos decorativos somem */
+}
+
+.extreme-minimal #sidebar,
+.extreme-minimal .menu-button,
+.extreme-minimal #settings-modal {
+  display: block !important; /* mantém acesso às opções */
 }
 
 .floating-menu {

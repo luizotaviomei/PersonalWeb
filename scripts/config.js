@@ -1,6 +1,6 @@
 const currentVersion = 'v1.0';
 
-export const settings = {
+window.settings = {
   toggleAnimations: () => {
     const el = document.getElementById('toggleAnimations');
     if (!el) return;
@@ -48,13 +48,12 @@ export const settings = {
   }
 };
 
-// Inicializa os controles na página de configurações
-export function initSettingsPage() {
-  for (const key in settings) {
+window.initSettingsPage = function () {
+  for (const key in window.settings) {
     const el = document.getElementById(key);
     if (!el) continue;
 
-    el.addEventListener('change', settings[key]);
+    el.addEventListener('change', window.settings[key]);
 
     if (el.type === 'checkbox') {
       el.checked = localStorage.getItem(key) === 'true';
@@ -63,7 +62,7 @@ export function initSettingsPage() {
       if (saved) el.value = saved;
     }
 
-    settings[key](); // Aplicar estado atual
+    window.settings[key](); // Aplicar estado atual
   }
 
   // Botões extras
@@ -75,9 +74,8 @@ export function initSettingsPage() {
   document.getElementById('backBtn')?.addEventListener('click', () => {
     window.location.href = 'index.html';
   });
-}
+};
 
-// Função auxiliar opcional
-export function showHelp(settingId) {
+window.showHelp = function (settingId) {
   alert(`Ajuda para a opção: ${settingId}`);
-}
+};

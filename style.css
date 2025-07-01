@@ -522,7 +522,7 @@ body {
 
    .menu-button {
     top: 20px; /* antes era 8px */
-    left: 12px;
+    left: 20px;
     width: 26px;
     height: 20px;
   }
@@ -532,7 +532,7 @@ body {
   }
 
   .theme-switch {
-    top: 20px; /* antes era 8px */
+    top: 12px; /* antes era 8px */
     right: 12px;
   }
   

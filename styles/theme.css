@@ -1,0 +1,23 @@
+.no-animations * {
+  animation: none !important;
+  transition: none !important;
+}
+.high-contrast {
+  filter: contrast(1.5) brightness(1.1);
+}
+.extreme-minimal .bola,
+.extreme-minimal #typing,
+.extreme-minimal .decorativo {
+  display: none;
+}
+.extreme-minimal #sidebar,
+.extreme-minimal .menu-button,
+.extreme-minimal #settings-modal {
+  display: block !important;
+}
+.floating-menu {
+  position: absolute !important;
+  top: 20px;
+  left: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}

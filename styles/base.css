@@ -1,1 +1,22 @@
-
+:root {
+  --bg-color: #000;
+  --text-color: #fff;
+  --ball-color: white;
+}
+[data-theme="light"] {
+  --bg-color: #f9f9f9;
+  --text-color: #111;
+  --ball-color: black;
+}
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Orbitron', sans-serif;
+  transition: background-color 0.4s, color 0.4s;
+}
+.hidden {
+  display: none;
+}

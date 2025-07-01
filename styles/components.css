@@ -1,0 +1,22 @@
+.link-icon {
+  color: var(--text-color);
+  font-size: 2.5rem;
+  text-decoration: none;
+  position: relative;
+  transition: transform 0.3s ease, color 0.3s;
+}
+.link-icon:hover {
+  transform: scale(1.3) rotate(5deg);
+  color: #a855f7;
+}
+.spinner {
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top: 6px solid #a855f7;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,5 +1,6 @@
 import { initLoader } from './loader.js';
 import { initSnow } from './animations.js';
+import { settings } from './config.js'; // Corrigido: importar o objeto settings
 
 // Loader inicial com animação de digitação
 initLoader();
@@ -18,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (checkbox) checkbox.checked = true;
   }
 
-  // 🛠 Corrigir botão "Sobre mim" para virar link
+  // 🔧 Corrigir botão "Sobre mim" para virar link
   const sobreBtn = document.querySelector('.accordion-item button.accordion-title');
   if (sobreBtn && sobreBtn.textContent.includes('Sobre mim')) {
     const newLink = document.createElement('a');
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
   }
 
-  // ⚙️ Aplicar configurações (settings.js)
+  // ⚙️ Aplicar configurações (config.js)
   if (typeof settings !== 'undefined') {
     for (const key in settings) {
       const el = document.getElementById(key);

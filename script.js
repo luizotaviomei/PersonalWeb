@@ -94,9 +94,6 @@ function showNextVersion() {
     showVersion(currentVersionIndex);
   }
 }
-function openUpdates() {
-  document.getElementById("updates-modal").classList.remove("hidden");
-}
 
 function closeUpdates() {
   document.getElementById("updates-modal").classList.add("hidden");

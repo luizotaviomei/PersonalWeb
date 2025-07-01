@@ -1,31 +1,39 @@
-.settings-group label {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  font-size: 0.9rem;
-  margin-bottom: 12px;
+:root {
+  --bg-color: #000;
+  --text-color: #fff;
+  --ball-color: white;
 }
-.settings-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-  gap: 10px;
-  font-family: 'Fira Code', monospace;
-  font-size: 0.9rem;
+
+[data-theme="light"] {
+  --bg-color: #f9f9f9;
+  --text-color: #111;
+  --ball-color: black;
 }
-.settings-group button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: #a855f7;
-  color: white;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
+
+.no-animations * {
+  animation: none !important;
+  transition: none !important;
 }
-.settings-group button:hover {
-  background-color: #9333ea;
+
+.high-contrast {
+  filter: contrast(1.5) brightness(1.1);
+}
+
+.extreme-minimal .bola,
+.extreme-minimal #typing,
+.extreme-minimal .decorativo {
+  display: none;
+}
+
+.extreme-minimal #sidebar,
+.extreme-minimal .menu-button,
+.extreme-minimal #settings-modal {
+  display: block !important;
+}
+
+.floating-menu {
+  position: absolute !important;
+  top: 20px;
+  left: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }

@@ -11,6 +11,20 @@
   z-index: 2000;
   transition: opacity 0.5s ease;
 }
+
+.spinner {
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top: 6px solid #a855f7;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .loader-message {
   margin-top: 20px;
   color: var(--text-color);

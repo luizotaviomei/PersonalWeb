@@ -135,12 +135,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!animChecked) document.body.classList.add('no-animations');
   if (contrastChecked) document.body.classList.add('high-contrast');
   if (minimalChecked) document.body.classList.add('extreme-minimal');
-  if (menuStyle === 'floating') {
-    document.getElementById('sidebar')?.classList.add('floating-menu');
-    const menuStyleEl = document.getElementById('menuStyle');
- if (menuStyleEl) menuStyleEl.value = 'floating';
-
+ if (menuStyle === 'floating') {
+  document.getElementById('sidebar')?.classList.add('floating-menu');
+  const menuStyleEl = document.getElementById('menuStyle');
+  if (menuStyleEl) {
+    menuStyleEl.value = 'floating';
   }
+}
 
   document.getElementById('toggleAnimations')?.checked = animChecked;
   document.getElementById('increaseContrast')?.checked = contrastChecked;

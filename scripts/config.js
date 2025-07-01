@@ -1,55 +1,55 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const currentVersion = 'v1.0';
+const currentVersion = 'v1.0';
 
-  const settings = {
-    toggleAnimations: () => {
-      const el = document.getElementById('toggleAnimations');
-      if (!el) return;
-      const enabled = el.checked;
-      document.body.classList.toggle('no-animations', !enabled);
-      localStorage.setItem('toggleAnimations', enabled);
-    },
-    increaseContrast: () => {
-      const el = document.getElementById('increaseContrast');
-      if (!el) return;
-      const enabled = el.checked;
-      document.body.classList.toggle('high-contrast', enabled);
-      localStorage.setItem('increaseContrast', enabled);
-    },
-    preloadUpdates: () => {
-      const el = document.getElementById('preloadUpdates');
-      if (!el) return;
-      localStorage.setItem('preloadUpdates', el.checked);
-    },
-    enableDevLogs: () => {
-      const el = document.getElementById('enableDevLogs');
-      if (!el) return;
-      localStorage.setItem('enableDevLogs', el.checked);
-    },
-    debugConsole: () => {
-      const el = document.getElementById('debugConsole');
-      if (!el) return;
-      localStorage.setItem('debugConsole', el.checked);
-    },
-    forceUpdateModal: () => {
-      const el = document.getElementById('forceUpdateModal');
-      if (!el) return;
-      localStorage.setItem('lastSeenVersion', el.checked ? '' : currentVersion);
-      localStorage.setItem('forceUpdateModal', el.checked);
-    },
-    languageSelect: () => {
-      const el = document.getElementById('languageSelect');
-      if (!el) return;
-      localStorage.setItem('languageSelect', el.value);
-    },
-    menuStyle: () => {
-      const el = document.getElementById('menuStyle');
-      if (!el) return;
-      localStorage.setItem('menuStyle', el.value);
-    }
-  };
+export const settings = {
+  toggleAnimations: () => {
+    const el = document.getElementById('toggleAnimations');
+    if (!el) return;
+    const enabled = el.checked;
+    document.body.classList.toggle('no-animations', !enabled);
+    localStorage.setItem('toggleAnimations', enabled);
+  },
+  increaseContrast: () => {
+    const el = document.getElementById('increaseContrast');
+    if (!el) return;
+    const enabled = el.checked;
+    document.body.classList.toggle('high-contrast', enabled);
+    localStorage.setItem('increaseContrast', enabled);
+  },
+  preloadUpdates: () => {
+    const el = document.getElementById('preloadUpdates');
+    if (!el) return;
+    localStorage.setItem('preloadUpdates', el.checked);
+  },
+  enableDevLogs: () => {
+    const el = document.getElementById('enableDevLogs');
+    if (!el) return;
+    localStorage.setItem('enableDevLogs', el.checked);
+  },
+  debugConsole: () => {
+    const el = document.getElementById('debugConsole');
+    if (!el) return;
+    localStorage.setItem('debugConsole', el.checked);
+  },
+  forceUpdateModal: () => {
+    const el = document.getElementById('forceUpdateModal');
+    if (!el) return;
+    localStorage.setItem('lastSeenVersion', el.checked ? '' : currentVersion);
+    localStorage.setItem('forceUpdateModal', el.checked);
+  },
+  languageSelect: () => {
+    const el = document.getElementById('languageSelect');
+    if (!el) return;
+    localStorage.setItem('languageSelect', el.value);
+  },
+  menuStyle: () => {
+    const el = document.getElementById('menuStyle');
+    if (!el) return;
+    localStorage.setItem('menuStyle', el.value);
+  }
+};
 
-  // Inicializar e aplicar estados
+// Inicializa os controles na página de configurações
+export function initSettingsPage() {
   for (const key in settings) {
     const el = document.getElementById(key);
     if (!el) continue;
@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (saved) el.value = saved;
     }
 
-    settings[key](); // Aplicar visual
+    settings[key](); // Aplicar estado atual
   }
 
-  // Botões extra
+  // Botões extras
   document.getElementById('resetBtn')?.addEventListener('click', () => {
     localStorage.clear();
     location.reload();
@@ -75,9 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('backBtn')?.addEventListener('click', () => {
     window.location.href = 'index.html';
   });
-});
+}
 
-// (opcional) função de ajuda
-function showHelp(settingId) {
+// Função auxiliar opcional
+export function showHelp(settingId) {
   alert(`Ajuda para a opção: ${settingId}`);
 }

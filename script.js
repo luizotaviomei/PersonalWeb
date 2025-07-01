@@ -78,6 +78,71 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('toggleAnimations')?.checked = animChecked;
   document.getElementById('increaseContrast')?.checked = contrastChecked;
   document.getElementById('extremeMinimalMode')?.checked = minimalChecked;
+  const settings = {
+  toggleAnimations: () => {
+    const enabled = document.getElementById('toggleAnimations')?.checked;
+    if (enabled) {
+      document.body.classList.remove('no-animations');
+    } else {
+      document.body.classList.add('no-animations');
+    }
+    localStorage.setItem('animationsEnabled', enabled);
+  },
+  increaseContrast: () => {
+    const enabled = document.getElementById('increaseContrast')?.checked;
+    if (enabled) {
+      document.body.classList.add('high-contrast');
+    } else {
+      document.body.classList.remove('high-contrast');
+    }
+    localStorage.setItem('contrastEnabled', enabled);
+  },
+  extremeMinimalMode: () => {
+    const enabled = document.getElementById('extremeMinimalMode')?.checked;
+    if (enabled) {
+      document.body.classList.add('extreme-minimal');
+    } else {
+      document.body.classList.remove('extreme-minimal');
+    }
+    localStorage.setItem('minimalEnabled', enabled);
+  },
+  menuStyle: () => {
+    const style = document.getElementById('menuStyle')?.value || 'fixed';
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+    if (style === 'floating') {
+      sidebar.classList.add('floating-menu');
+    } else {
+      sidebar.classList.remove('floating-menu');
+    }
+    localStorage.setItem('menuStyle', style);
+  },
+  preloadUpdates: () => {
+    const enabled = document.getElementById('preloadUpdates')?.checked;
+    localStorage.setItem('preloadUpdates', enabled);
+  },
+  enableDevLogs: () => {
+    const enabled = document.getElementById('enableDevLogs')?.checked;
+    localStorage.setItem('enableDevLogs', enabled);
+  },
+  debugConsole: () => {
+    const enabled = document.getElementById('debugConsole')?.checked;
+    localStorage.setItem('debugConsole', enabled);
+  },
+  forceUpdateModal: () => {
+    const enabled = document.getElementById('forceUpdateModal')?.checked;
+    if (enabled) {
+      localStorage.setItem('lastSeenVersion', ''); // força a abrir na próxima vez
+    } else {
+      localStorage.setItem('lastSeenVersion', versions[0].version);
+    }
+    localStorage.setItem('forceUpdateModal', enabled);
+  },
+  languageSelect: () => {
+    const lang = document.getElementById('languageSelect')?.value;
+    localStorage.setItem('languageSelect', lang);
+  }
+};
 
   // Listeners
   for (const key in settings) {

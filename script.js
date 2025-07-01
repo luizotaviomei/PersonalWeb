@@ -126,23 +126,21 @@ document.addEventListener('DOMContentLoaded', () => {
     sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
   }
 
-  // Preferências salvas
 const animChecked = localStorage.getItem('animationsEnabled') === 'true';
-document.body.classList.toggle('no-animations', !animChecked);
 const contrastChecked = localStorage.getItem('contrastEnabled') === 'true';
 const minimalChecked = localStorage.getItem('minimalEnabled') === 'true';
 const savedMenuStyle = localStorage.getItem('menuStyle') || 'fixed';
 
-if (!animChecked) document.body.classList.add('no-animations');
+document.body.classList.toggle('no-animations', !animChecked);
 if (contrastChecked) document.body.classList.add('high-contrast');
 if (minimalChecked) document.body.classList.add('extreme-minimal');
 
 if (savedMenuStyle === 'floating') {
   document.getElementById('sidebar')?.classList.add('floating-menu');
   const menuStyleEl = document.getElementById('menuStyle');
-if (menuStyleEl) {
-  menuStyleEl.value = 'floating';
-}
+  if (menuStyleEl) {
+    menuStyleEl.value = 'floating';
+  }
 }
 
 const toggleEl = document.getElementById('toggleAnimations');

@@ -41,7 +41,7 @@ const versions = [
 
 let currentVersionIndex = 0;
 
-// DOMContentLoaded → tema e texto
+// DOMContentLoaded → tema, correção de botão antigo, etc.
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
   const checkbox = document.querySelector('.switch input');
@@ -49,9 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', 'light');
     checkbox.checked = true;
   }
+
+  // Corrige botão antigo de "Sobre mim" caso ainda esteja com onclick
+  const sobreBtn = document.querySelector('.accordion-item button.accordion-title');
+  if (sobreBtn && sobreBtn.textContent.includes('Sobre mim')) {
+    const newLink = document.createElement('a');
+    newLink.href = 'sobre.html';
+    newLink.className = 'accordion-title';
+    newLink.textContent = 'Sobre mim';
+    sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
+  }
 });
 
-// Loader + lógica de visita + exibição de modal
+// Loader + modal + animação de digitação
 window.addEventListener("load", () => {
   const loader = document.getElementById('loader');
   const typingElement = document.getElementById("typing");
@@ -72,16 +82,13 @@ window.addEventListener("load", () => {
     updatesButton.onclick = openUpdates;
   }
 
-  // Remove loader após 1s e inicia digitação
+  // Remove loader e inicia texto
   setTimeout(() => {
     loader.style.opacity = '0';
     setTimeout(() => {
       loader.remove();
-
-      // Agora sim salva que visitou
       localStorage.setItem('visitedBefore', 'true');
 
-      // Começa digitação
       let i = 0;
       const interval = setInterval(() => {
         if (i < welcomeText.length) {
@@ -95,7 +102,7 @@ window.addEventListener("load", () => {
   }, 1000);
 });
 
-// Funções auxiliares
+// Funções de tema
 function toggleTheme(checkbox) {
   if (checkbox.checked) {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -106,6 +113,7 @@ function toggleTheme(checkbox) {
   }
 }
 
+// Atualizações (modal)
 function openUpdates() {
   showVersion(currentVersionIndex);
   document.getElementById("updates-modal").classList.remove("hidden");
@@ -176,6 +184,7 @@ function showNextVersion() {
   }
 }
 
+// Mensagens modais
 function showUnavailableMessage(event) {
   event.preventDefault();
   const overlay = document.createElement('div');
@@ -227,6 +236,7 @@ function showSoonMessage(title) {
   document.body.appendChild(overlay);
 }
 
+// Menu lateral
 function toggleSidebar() {
   document.getElementById('sidebar').style.left = '0';
   document.getElementById('sidebar-overlay').style.display = 'block';

@@ -520,8 +520,8 @@ body {
     font-size: 1.2rem;
   }
 
-  .menu-button {
-    top: 8px;
+   .menu-button {
+    top: 20px; /* antes era 8px */
     left: 12px;
     width: 26px;
     height: 20px;
@@ -532,10 +532,10 @@ body {
   }
 
   .theme-switch {
-    top: 8px;
+    top: 20px; /* antes era 8px */
     right: 12px;
   }
-
+  
   .footer {
     font-size: 0.7rem;
     right: 10px;

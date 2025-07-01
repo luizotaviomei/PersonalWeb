@@ -42,43 +42,8 @@ const versions = [
 
 let currentVersionIndex = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
-  const checkbox = document.querySelector('.switch input');
-  const savedTheme = localStorage.getItem('theme');
-
-  if (savedTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    if (checkbox) checkbox.checked = true;
-  }
-
-  const sobreBtn = document.querySelector('.accordion-item button.accordion-title');
-  if (sobreBtn && sobreBtn.textContent.includes('Sobre mim')) {
-    const newLink = document.createElement('a');
-    newLink.href = 'sobre.html';
-    newLink.className = 'accordion-title';
-    newLink.textContent = 'Sobre mim';
-    sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
-  }
-
-  // Aplicar preferências
-  const animChecked = localStorage.getItem('animationsEnabled') !== 'false';
-  const contrastChecked = localStorage.getItem('contrastEnabled') === 'true';
-  const minimalChecked = localStorage.getItem('minimalEnabled') === 'true';
-  const menuStyle = localStorage.getItem('menuStyle') || 'fixed';
-
-  if (!animChecked) document.body.classList.add('no-animations');
-  if (contrastChecked) document.body.classList.add('high-contrast');
-  if (minimalChecked) document.body.classList.add('extreme-minimal');
-  if (menuStyle === 'floating') {
-    document.getElementById('sidebar')?.classList.add('floating-menu');
-    document.getElementById('menuStyle').value = 'floating';
-  }
-
-  // Checkbox sync
-  document.getElementById('toggleAnimations')?.checked = animChecked;
-  document.getElementById('increaseContrast')?.checked = contrastChecked;
-  document.getElementById('extremeMinimalMode')?.checked = minimalChecked;
-  const settings = {
+// === SETTINGS: agora fora do DOMContentLoaded para escopo global ===
+const settings = {
   toggleAnimations: () => {
     const enabled = document.getElementById('toggleAnimations')?.checked;
     if (enabled) {
@@ -132,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   forceUpdateModal: () => {
     const enabled = document.getElementById('forceUpdateModal')?.checked;
     if (enabled) {
-      localStorage.setItem('lastSeenVersion', ''); // força a abrir na próxima vez
+      localStorage.setItem('lastSeenVersion', ''); // força abrir
     } else {
       localStorage.setItem('lastSeenVersion', versions[0].version);
     }
@@ -144,17 +109,45 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 };
 
-  // Listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const checkbox = document.querySelector('.switch input');
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    if (checkbox) checkbox.checked = true;
+  }
+
+  const sobreBtn = document.querySelector('.accordion-item button.accordion-title');
+  if (sobreBtn && sobreBtn.textContent.includes('Sobre mim')) {
+    const newLink = document.createElement('a');
+    newLink.href = 'sobre.html';
+    newLink.className = 'accordion-title';
+    newLink.textContent = 'Sobre mim';
+    sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
+  }
+
+  // Preferências salvas
+  const animChecked = localStorage.getItem('animationsEnabled') !== 'false';
+  const contrastChecked = localStorage.getItem('contrastEnabled') === 'true';
+  const minimalChecked = localStorage.getItem('minimalEnabled') === 'true';
+  const menuStyle = localStorage.getItem('menuStyle') || 'fixed';
+
+  if (!animChecked) document.body.classList.add('no-animations');
+  if (contrastChecked) document.body.classList.add('high-contrast');
+  if (minimalChecked) document.body.classList.add('extreme-minimal');
+  if (menuStyle === 'floating') {
+    document.getElementById('sidebar')?.classList.add('floating-menu');
+    document.getElementById('menuStyle').value = 'floating';
+  }
+
+  document.getElementById('toggleAnimations')?.checked = animChecked;
+  document.getElementById('increaseContrast')?.checked = contrastChecked;
+  document.getElementById('extremeMinimalMode')?.checked = minimalChecked;
+
   for (const key in settings) {
     const el = document.getElementById(key);
     if (!el) continue;
     el.addEventListener('change', settings[key]);
-  }
-
-  // Executar estados salvos
-  for (const key in settings) {
-    const el = document.getElementById(key);
-    if (!el) continue;
     if (el.type === 'checkbox') {
       el.checked = localStorage.getItem(key) === 'true';
     } else if (el.tagName === 'SELECT') {
@@ -185,12 +178,10 @@ window.addEventListener("load", () => {
   }
 
   setTimeout(() => {
-  if (loader) loader.style.opacity = '0';
-
-  setTimeout(() => {
-    if (loader && loader.parentNode) loader.remove();
-
-      // Só faz a animação de digitação se o elemento existir
+    loader.style.opacity = '0';
+    setTimeout(() => {
+      loader.remove();
+      localStorage.setItem('visitedBefore', 'true');
       if (typingElement) {
         let i = 0;
         const interval = setInterval(() => {
@@ -394,3 +385,5 @@ function showHelp(optionId) {
   });
   document.body.appendChild(overlay);
 }
+
+

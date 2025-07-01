@@ -42,13 +42,13 @@ const versions = [
 
 let currentVersionIndex = 0;
 
-// DOMContentLoaded → tema, correção de botão antigo, etc.
 document.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme');
   const checkbox = document.querySelector('.switch input');
+  const savedTheme = localStorage.getItem('theme');
+
   if (savedTheme === 'light') {
     document.documentElement.setAttribute('data-theme', 'light');
-    checkbox.checked = true;
+    if (checkbox) checkbox.checked = true;
   }
 
   const sobreBtn = document.querySelector('.accordion-item button.accordion-title');
@@ -58,6 +58,45 @@ document.addEventListener('DOMContentLoaded', () => {
     newLink.className = 'accordion-title';
     newLink.textContent = 'Sobre mim';
     sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
+  }
+
+  // Aplicar preferências
+  const animChecked = localStorage.getItem('animationsEnabled') !== 'false';
+  const contrastChecked = localStorage.getItem('contrastEnabled') === 'true';
+  const minimalChecked = localStorage.getItem('minimalEnabled') === 'true';
+  const menuStyle = localStorage.getItem('menuStyle') || 'fixed';
+
+  if (!animChecked) document.body.classList.add('no-animations');
+  if (contrastChecked) document.body.classList.add('high-contrast');
+  if (minimalChecked) document.body.classList.add('extreme-minimal');
+  if (menuStyle === 'floating') {
+    document.getElementById('sidebar')?.classList.add('floating-menu');
+    document.getElementById('menuStyle').value = 'floating';
+  }
+
+  // Checkbox sync
+  document.getElementById('toggleAnimations')?.checked = animChecked;
+  document.getElementById('increaseContrast')?.checked = contrastChecked;
+  document.getElementById('extremeMinimalMode')?.checked = minimalChecked;
+
+  // Listeners
+  for (const key in settings) {
+    const el = document.getElementById(key);
+    if (!el) continue;
+    el.addEventListener('change', settings[key]);
+  }
+
+  // Executar estados salvos
+  for (const key in settings) {
+    const el = document.getElementById(key);
+    if (!el) continue;
+    if (el.type === 'checkbox') {
+      el.checked = localStorage.getItem(key) === 'true';
+    } else if (el.tagName === 'SELECT') {
+      const saved = localStorage.getItem(key);
+      if (saved) el.value = saved;
+    }
+    settings[key]();
   }
 });
 
@@ -249,75 +288,6 @@ function toggleSettings() {
 function closeSettings() {
   document.getElementById('settings-modal').classList.add('hidden');
 }
-// Aplica preferências com base nos checkboxes e selects
-document.addEventListener('DOMContentLoaded', () => {
-  const settings = {
-    toggleAnimations: () => {
-      const enabled = document.getElementById('toggleAnimations').checked;
-      document.body.classList.toggle('no-animations', !enabled);
-      localStorage.setItem('toggleAnimations', enabled);
-    },
-    increaseContrast: () => {
-      const enabled = document.getElementById('increaseContrast').checked;
-      document.body.classList.toggle('high-contrast', enabled);
-      localStorage.setItem('increaseContrast', enabled);
-    },
-    preloadUpdates: () => {
-      const enabled = document.getElementById('preloadUpdates').checked;
-      localStorage.setItem('preloadUpdates', enabled);
-    },
-    enableDevLogs: () => {
-      const enabled = document.getElementById('enableDevLogs').checked;
-      localStorage.setItem('enableDevLogs', enabled);
-      if (enabled) console.log("[DevLogs] Ativado");
-    },
-    debugConsole: () => {
-      const enabled = document.getElementById('debugConsole').checked;
-      localStorage.setItem('debugConsole', enabled);
-      if (enabled) console.debug("[Debug] Debug ativado");
-    },
-    forceUpdateModal: () => {
-      const enabled = document.getElementById('forceUpdateModal').checked;
-      if (enabled) localStorage.setItem('lastSeenVersion', ''); // Força reabertura
-    },
-    extremeMinimalMode: () => {
-      const enabled = document.getElementById('extremeMinimalMode').checked;
-      document.body.classList.toggle('extreme-minimal', enabled);
-      localStorage.setItem('extremeMinimalMode', enabled);
-    },
-    languageSelect: () => {
-      const lang = document.getElementById('languageSelect').value;
-      localStorage.setItem('language', lang);
-    },
-    menuStyle: () => {
-      const style = document.getElementById('menuStyle').value;
-      document.getElementById('sidebar').className = style === 'floating' ? 'floating-menu' : '';
-      localStorage.setItem('menuStyle', style);
-    }
-  };
-
-  // Inicializar estados salvos
-  for (const key in settings) {
-    const el = document.getElementById(key);
-    if (!el) continue;
-    if (el.type === 'checkbox') {
-      const saved = localStorage.getItem(key) === 'true';
-      el.checked = saved;
-    } else if (el.tagName === 'SELECT') {
-      const saved = localStorage.getItem(key);
-      if (saved) el.value = saved;
-    }
-    settings[key]();
-  }
-
-  // Listeners
-  for (const key in settings) {
-    const el = document.getElementById(key);
-    if (!el) continue;
-    el.addEventListener('change', settings[key]);
-  }
-});
-
 
 function showHelp(optionId) {
   const messages = {

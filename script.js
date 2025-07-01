@@ -145,17 +145,20 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('extremeMinimalMode')?.checked = minimalChecked;
 
   for (const key in settings) {
-    const el = document.getElementById(key);
-    if (!el) continue;
-    el.addEventListener('change', settings[key]);
-    if (el.type === 'checkbox') {
-      el.checked = localStorage.getItem(key) === 'true';
-    } else if (el.tagName === 'SELECT') {
-      const saved = localStorage.getItem(key);
-      if (saved) el.value = saved;
-    }
-    settings[key]();
+  const el = document.getElementById(key);
+  if (!el) continue;
+  el.addEventListener('change', settings[key]);
+
+  if (el.type === 'checkbox') {
+    el.checked = localStorage.getItem(key) === 'true';
+  } else if (el.tagName === 'SELECT') {
+    const saved = localStorage.getItem(key);
+    if (saved) el.value = saved;
   }
+
+  // Só executa se o elemento existe
+  settings[key]();
+}
 });
 
 window.addEventListener("load", () => {

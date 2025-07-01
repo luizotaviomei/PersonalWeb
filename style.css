@@ -26,6 +26,8 @@ body {
   position: relative;
   transition: background-color 0.4s, color 0.4s;
 }
+
+/* Modal de atualizações */
 .updates-modal {
   position: fixed;
   top: 0;
@@ -54,6 +56,49 @@ body {
   font-family: 'Fira Code', monospace;
   max-width: 320px;
   width: 90%;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 transparent;
+}
+
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #a855f7;
+  border-radius: 4px;
+}
+
+/* Título principal */
+#updates-modal h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #a855f7;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+/* Versão atual */
+.modal-content p strong {
+  font-size: 1.1rem;
+}
+
+/* Subtítulos dentro do changelog */
+#changelog-container h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #bb86fc;
+  margin-top: 1.2rem;
+  margin-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.5);
+  padding-bottom: 2px;
+  text-align: left;
 }
 
 .modal-content ul.changelog {
@@ -64,7 +109,7 @@ body {
 }
 
 .modal-content ul.changelog li {
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-size: 0.9rem;
   padding-left: 1em;
   position: relative;
@@ -77,6 +122,7 @@ body {
   color: #a855f7;
 }
 
+/* Botões do modal */
 .modal-buttons {
   margin-top: 20px;
   display: flex;
@@ -95,7 +141,8 @@ body {
   transition: background-color 0.3s;
 }
 
-.modal-buttons button:hover {
+.modal-buttons button:hover,
+.modal-box button:hover {
   background-color: #9333ea;
 }
 
@@ -122,6 +169,7 @@ body {
   z-index: 2000;
   transition: opacity 0.5s ease;
 }
+
 .link-icon {
   color: var(--text-color);
   font-size: 2.5rem;
@@ -169,6 +217,7 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Switch de tema */
 .theme-switch {
   position: absolute;
   top: 10px;
@@ -277,22 +326,6 @@ body {
   animation: blink 0.75s step-end infinite;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-.menu-button.active div:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.menu-button.active div:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-button.active div:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
 @keyframes blink {
   50% { border-color: transparent; }
 }
@@ -307,8 +340,6 @@ body {
   gap: 30px;
   justify-content: center;
 }
-
-
 
 .ball {
   position: absolute;
@@ -359,10 +390,6 @@ body {
   transition: background-color 0.3s;
 }
 
-.modal-box button:hover {
-  background-color: #a855f7;
-}
-
 .menu-button {
   position: absolute;
   top: 12px;
@@ -389,6 +416,19 @@ body {
   border-radius: 2px;
 }
 
+.menu-button.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-button.active div:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-button.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Sidebar */
 #sidebar-overlay {
   display: none;
   position: fixed;
@@ -464,6 +504,7 @@ body {
   padding-top: 5px;
 }
 
+/* Responsividade */
 @media (max-width: 600px) {
   .cube-box {
     flex-wrap: wrap;
@@ -511,5 +552,9 @@ body {
 
   .modal-box button {
     font-size: 0.8rem;
+  }
+
+  .modal-content {
+    max-width: 90%;
   }
 }

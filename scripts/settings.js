@@ -5,12 +5,14 @@ function toggleSettings() {
   }
 }
 
+// Função para fechar diretamente o modal
 function closeSettings() {
   const modal = document.getElementById('settings-modal');
   if (modal) {
     modal.classList.add('hidden');
   }
 }
+
 // Fallback seguro para versões
 const currentVersion = (typeof versions !== 'undefined' && versions.length > 0)
   ? versions[0].version
@@ -56,5 +58,3 @@ const settings = {
     localStorage.setItem('languageSelect', lang);
   }
 };
-window.toggleSettings = toggleSettings;
-window.closeSettings = closeSettings;

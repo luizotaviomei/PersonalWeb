@@ -11,7 +11,7 @@ for (let i = 0; i < NUM_BOLAS; i++) {
   document.body.appendChild(ball);
 }
 
-// Versões do changelog
+// Versões
 const versions = [
   {
     version: "vBeta 1.0",
@@ -22,9 +22,7 @@ const versions = [
       "Menu lateral com abas e modal",
       "Botão de tema com ícones"
     ],
-    changed: [
-      "Estilo do botão do menu animado"
-    ],
+    changed: ["Estilo do botão do menu animado"],
     removed: [],
     note: "Primeira versão completa e funcional. Aguardando feedbacks para melhorias futuras."
   },
@@ -43,7 +41,7 @@ const versions = [
 
 let currentVersionIndex = 0;
 
-// DOMContentLoaded → configura tema e digitação
+// DOMContentLoaded → tema e texto
 document.addEventListener('DOMContentLoaded', () => {
   const savedTheme = localStorage.getItem('theme');
   const checkbox = document.querySelector('.switch input');
@@ -51,37 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.setAttribute('data-theme', 'light');
     checkbox.checked = true;
   }
-
-  const typingElement = document.getElementById("typing");
-
-  // Exibe "Welcome" ou "Welcome back"
-  const firstVisit = localStorage.getItem('visitedBefore');
-  const welcomeText = firstVisit ? "Welcome back to Link Hub..." : "Welcome to Link Hub...";
-  localStorage.setItem('visitedBefore', 'true');
-
-  setTimeout(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < welcomeText.length) {
-        typingElement.textContent += welcomeText[i];
-        i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
-  }, 6000);
 });
 
-// Loader + modal auto
+// Loader + lógica de visita + exibição de modal
 window.addEventListener("load", () => {
   const loader = document.getElementById('loader');
+  const typingElement = document.getElementById("typing");
   const updatesButton = document.getElementById('updates-button');
 
-  if (updatesButton) {
-    updatesButton.onclick = openUpdates;
-  }
+  const isReturning = localStorage.getItem('visitedBefore') === 'true';
+  const welcomeText = isReturning ? "Welcome back to Link Hub..." : "Welcome to Link Hub...";
 
-  // Modal só aparece se for nova versão
+  // Modal de atualizações
   const currentVersion = versions[0].version;
   const seenVersion = localStorage.getItem('lastSeenVersion');
   if (seenVersion !== currentVersion) {
@@ -89,11 +68,34 @@ window.addEventListener("load", () => {
     localStorage.setItem('lastSeenVersion', currentVersion);
   }
 
-  // Remove loader com fade
-  loader.style.opacity = '0';
-  setTimeout(() => loader.remove(), 500);
+  if (updatesButton) {
+    updatesButton.onclick = openUpdates;
+  }
+
+  // Remove loader após 1s e inicia digitação
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    setTimeout(() => {
+      loader.remove();
+
+      // Agora sim salva que visitou
+      localStorage.setItem('visitedBefore', 'true');
+
+      // Começa digitação
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < welcomeText.length) {
+          typingElement.textContent += welcomeText[i];
+          i++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 100);
+    }, 500);
+  }, 1000);
 });
 
+// Funções auxiliares
 function toggleTheme(checkbox) {
   if (checkbox.checked) {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -118,7 +120,6 @@ function closeUpdates() {
 
 function showVersion(index) {
   const versionData = versions[index];
-
   document.getElementById("version-title").textContent = versionData.version;
 
   const container = document.getElementById("changelog-container");
@@ -138,13 +139,11 @@ function showVersion(index) {
 
       const ul = document.createElement("ul");
       ul.className = "changelog";
-
       section.items.forEach(item => {
         const li = document.createElement("li");
         li.textContent = item;
         ul.appendChild(li);
       });
-
       container.appendChild(ul);
     }
   });

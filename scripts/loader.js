@@ -27,6 +27,4 @@ function initLoader() {
     }, 1000);
   });
 }
-
-// Torna a função acessível globalmente
 window.initLoader = initLoader;

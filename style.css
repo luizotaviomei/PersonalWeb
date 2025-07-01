@@ -26,6 +26,33 @@ body {
   position: relative;
   transition: background-color 0.4s, color 0.4s;
 }
+/* Loader */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  transition: opacity 0.5s ease;
+}
+
+.spinner {
+  border: 6px solid rgba(255,255,255,0.2);
+  border-top: 6px solid #a855f7;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
 .theme-switch {
   position: absolute;
@@ -128,17 +155,27 @@ body {
 .typing {
   font-family: 'Fira Code', monospace;
   font-size: 1.5rem;
-  border-right: 2px solid;
   white-space: nowrap;
   overflow: hidden;
-  width: 0;
-  animation: typing 4s steps(30, end) forwards, blink 0.75s step-end infinite;
-  animation-delay: 6s;
+  border-right: 2px solid var(--text-color);
+  padding-right: 5px;
+  animation: blink 0.75s step-end infinite;
 }
 
 @keyframes typing {
   from { width: 0; }
   to { width: 100%; }
+}
+.menu-button.active div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-button.active div:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-button.active div:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 @keyframes blink {

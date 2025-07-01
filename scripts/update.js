@@ -2,13 +2,14 @@ document.querySelectorAll(".accordion-toggle").forEach(button => {
   button.addEventListener("click", () => {
     button.classList.toggle("open");
 
-    const content = button.nextElementSibling;
-    if (content.classList.contains("active")) {
-      content.classList.remove("active");
-      content.style.maxHeight = null;
+    const panel = button.nextElementSibling;
+
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+      panel.classList.remove("open");
     } else {
-      content.classList.add("active");
-      content.style.maxHeight = content.scrollHeight + "px";
+      panel.style.maxHeight = panel.scrollHeight + "px";
+      panel.classList.add("open");
     }
   });
 });

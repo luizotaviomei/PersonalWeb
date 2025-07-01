@@ -143,7 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 }
 
-  document.getElementById('toggleAnimations')?.checked = animChecked;
+  const toggleEl = document.getElementById('toggleAnimations');
+if (toggleEl) toggleEl.checked = animChecked;
   document.getElementById('increaseContrast')?.checked = contrastChecked;
   document.getElementById('extremeMinimalMode')?.checked = minimalChecked;
 

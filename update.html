@@ -4,29 +4,59 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Atualizações - Link Hub</title>
-  <link rel="stylesheet" href="styles/updates.css">
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/545/545682.png">
+  <link rel="stylesheet" href="styles/update.css">
 </head>
 <body>
-  <button id="back-button" onclick="window.location.href='index.html'">⬅ Voltar</button>
+  <a href="index.html" class="back-button">← Voltar para o Link Hub</a>
   <h1 class="page-title">Atualizações</h1>
 
-  <div class="updates-container">
+  <div class="update-list">
     <div class="update-item">
-      <button class="accordion">Versão 1.0 - Lançamento oficial</button>
-      <div class="panel">
-        <p>Primeira versão completa com animações, loader, menu lateral funcional, configurações salvas e páginas adicionais.</p>
+      <button class="accordion-toggle">Versão 1.0 - Lançamento oficial</button>
+      <div class="accordion-content">
+        <h3>Versão 1.0</h3>
+        <div class="section">
+          <h4>🆕 Novidade</h4>
+          <p>Primeira versão completa com animações, loader, menu lateral funcional, configurações salvas e páginas adicionais.</p>
+        </div>
+        <div class="section">
+          <h4>🔧 Mudanças</h4>
+          <p>Reorganização dos arquivos CSS e JS, estrutura modular com import/export no futuro.</p>
+        </div>
+        <div class="section">
+          <h4>🐛 Correções</h4>
+          <p>Corrigido bug do botão de atualizações e erros de tema inicial.</p>
+        </div>
+        <div class="section">
+          <h4>📝 Nota do dev</h4>
+          <p>Essa versão marca o início da identidade visual e da funcionalidade central do Link Hub.</p>
+        </div>
       </div>
     </div>
 
     <div class="update-item">
-      <button class="accordion">Beta 1 - Protótipo inicial</button>
-      <div class="panel">
-        <p>Versão beta com layout inicial, links básicos e teste do efeito de bolas brancas caindo. Sem configurações ou responsividade ainda.</p>
+      <button class="accordion-toggle">Beta 1 - Protótipo inicial</button>
+      <div class="accordion-content">
+        <h3>Beta 1</h3>
+        <div class="section">
+          <h4>🆕 Novidade</h4>
+          <p>Layout inicial com links básicos e efeito de bolas caindo.</p>
+        </div>
+        <div class="section">
+          <h4>🔧 Mudanças</h4>
+          <p>N/A</p>
+        </div>
+        <div class="section">
+          <h4>🐛 Correções</h4>
+          <p>N/A</p>
+        </div>
+        <div class="section">
+          <h4>📝 Nota do dev</h4>
+          <p>Protótipo para testar a estética e animações iniciais do projeto.</p>
+        </div>
       </div>
     </div>
   </div>
-
-  <script src="scripts/update.js"></script>
+ <script src="scripts/update.js"></script>
 </body>
 </html>

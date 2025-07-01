@@ -20,7 +20,8 @@ const versions = [
       "Loader animado com bolas caindo",
       "Animação de digitação com texto 'Welcome to Link Hub...'",
       "Menu lateral com abas e modal",
-      "Botão de tema com ícones"
+      "Botão de tema com ícones",
+      "Modal de configurações do site com múltiplas opções"
     ],
     changed: ["Estilo do botão do menu animado"],
     removed: [],
@@ -50,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
     checkbox.checked = true;
   }
 
-  // Corrige botão antigo de "Sobre mim" caso ainda esteja com onclick
   const sobreBtn = document.querySelector('.accordion-item button.accordion-title');
   if (sobreBtn && sobreBtn.textContent.includes('Sobre mim')) {
     const newLink = document.createElement('a');
@@ -61,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Loader + modal + animação de digitação
 window.addEventListener("load", () => {
   const loader = document.getElementById('loader');
   const typingElement = document.getElementById("typing");
@@ -70,7 +69,6 @@ window.addEventListener("load", () => {
   const isReturning = localStorage.getItem('visitedBefore') === 'true';
   const welcomeText = isReturning ? "Welcome back to Link Hub..." : "Welcome to Link Hub...";
 
-  // Modal de atualizações
   const currentVersion = versions[0].version;
   const seenVersion = localStorage.getItem('lastSeenVersion');
   if (seenVersion !== currentVersion) {
@@ -82,7 +80,6 @@ window.addEventListener("load", () => {
     updatesButton.onclick = openUpdates;
   }
 
-  // Remove loader e inicia texto
   setTimeout(() => {
     loader.style.opacity = '0';
     setTimeout(() => {
@@ -102,7 +99,6 @@ window.addEventListener("load", () => {
   }, 1000);
 });
 
-// Funções de tema
 function toggleTheme(checkbox) {
   if (checkbox.checked) {
     document.documentElement.setAttribute('data-theme', 'light');
@@ -113,7 +109,6 @@ function toggleTheme(checkbox) {
   }
 }
 
-// Atualizações (modal)
 function openUpdates() {
   showVersion(currentVersionIndex);
   document.getElementById("updates-modal").classList.remove("hidden");
@@ -184,7 +179,6 @@ function showNextVersion() {
   }
 }
 
-// Mensagens modais
 function showUnavailableMessage(event) {
   event.preventDefault();
   const overlay = document.createElement('div');
@@ -236,7 +230,6 @@ function showSoonMessage(title) {
   document.body.appendChild(overlay);
 }
 
-// Menu lateral
 function toggleSidebar() {
   document.getElementById('sidebar').style.left = '0';
   document.getElementById('sidebar-overlay').style.display = 'block';
@@ -247,4 +240,50 @@ function closeSidebar() {
   document.getElementById('sidebar').style.left = '-300px';
   document.getElementById('sidebar-overlay').style.display = 'none';
   document.querySelector('.menu-button').classList.remove('hidden');
+}
+
+function toggleSettings() {
+  document.getElementById('settings-modal').classList.remove('hidden');
+}
+
+function closeSettings() {
+  document.getElementById('settings-modal').classList.add('hidden');
+}
+
+function showHelp(optionId) {
+  const messages = {
+    toggleAnimations: 'Ativa ou desativa animações visuais do site.',
+    increaseContrast: 'Melhora a legibilidade com cores de alto contraste.',
+    preloadUpdates: 'Carrega automaticamente as últimas atualizações em segundo plano.',
+    enableDevLogs: 'Exibe alterações do site em tempo real para fins de desenvolvimento.',
+    debugConsole: 'Mostra dados técnicos e mensagens de debug no console.',
+    forceUpdateModal: 'Força a exibição do modal de atualização na próxima visita.',
+    languageSelect: 'Seleciona o idioma preferido do site.',
+    menuStyle: 'Define se o menu será fixo na lateral ou flutuante.',
+    extremeMinimalMode: 'Remove elementos visuais supérfluos para um visual ultra minimalista.'
+  };
+
+  const message = messages[optionId] || 'Configuração desconhecida.';
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.innerHTML = `
+    <div class="modal-box">
+      <p>${message}</p>
+      <button onclick="document.body.removeChild(this.parentNode.parentNode)">Entendi</button>
+    </div>
+  `;
+  Object.assign(overlay.style, {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100vw',
+    height: '100vh',
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    backdropFilter: 'blur(5px)',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 1002
+  });
+  document.body.appendChild(overlay);
 }

@@ -42,6 +42,26 @@ body {
   max-width: 320px;
   width: 90%;
 }
+.updates-modal ul.changelog {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+  margin-top: 15px;
+}
+
+.updates-modal ul.changelog li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  padding-left: 1em;
+  position: relative;
+}
+
+.updates-modal ul.changelog li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #a855f7;
+}
 
 .updates-modal button {
   margin-top: 20px;

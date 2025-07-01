@@ -59,3 +59,28 @@
   z-index: 3;
   position: absolute;
 }
+@media (max-width: 600px) {
+  .theme-switch {
+    top: 20px;
+    right: 20px;
+    transform: scale(0.9);
+  }
+
+  .typing {
+    font-size: 1rem;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+
+  #sidebar {
+    width: 80vw;
+  }
+
+  .menu-button {
+    top: 15px;
+    left: 15px;
+    transform: scale(0.9);
+  }
+}
+

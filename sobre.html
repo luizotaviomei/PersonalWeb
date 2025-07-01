@@ -4,13 +4,88 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sobre mim - Luiz Otávio</title>
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/545/545682.png" type="image/png">
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/545/545682.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Fira+Code&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --bg-color: #000;
+      --text-color: #fff;
+    }
+
+    [data-theme="light"] {
+      --bg-color: #fff;
+      --text-color: #111;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Fira Code', monospace;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .theme-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .typing {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .content {
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 700px;
+    }
+
+    .back-button {
+      margin-top: 40px;
+      padding: 10px 20px;
+      background-color: #a855f7;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-family: 'Fira Code', monospace;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #c084fc;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
+
   <div class="theme-switch">
     <label class="switch">
       <input type="checkbox" onchange="toggleTheme(this)">
@@ -18,30 +93,28 @@
     </label>
   </div>
 
-  <div class="container" style="max-width: 800px; margin: auto; padding: 40px 20px;">
+  <div class="container">
     <h1 class="typing" id="typing">Sobre mim</h1>
-    <p style="font-family: 'Fira Code', monospace; font-size: 1rem; margin-top: 20px; line-height: 1.6;">
-      Olá! Me chamo Luiz Otávio, tenho 20 anos e sou uma pessoa introspectiva com momentos de leve extroversão. 
-      Atualmente, estou construindo este hub para conectar todos os meus links e projetos de forma prática, bonita e funcional.<br><br>
-
-      Me interesso por desenvolvimento web, design minimalista e inovação. Este projeto é um reflexo da minha vontade de aprender, organizar e criar algo útil.<br><br>
-
-      Em breve, trarei novidades, mais funcionalidades e talvez algumas ideias malucas também. Obrigado por visitar! 🚀
-    </p>
-
-    <div style="margin-top: 40px; text-align: center;">
-      <a href="index.html" style="text-decoration: none;">
-        <button style="padding: 10px 20px; border-radius: 8px; border: none; background-color: #a855f7; color: white; font-family: 'Fira Code', monospace; cursor: pointer;">
-          Voltar para o Link Hub
-        </button>
-      </a>
+    <div class="content">
+      <p>
+        Olá! Me chamo Luiz Otávio, tenho 20 anos e sou uma pessoa introspectiva com momentos de leve extroversão.
+        <br><br>
+        Atualmente estou desenvolvendo este projeto pessoal como forma de integrar minhas redes, criar uma central de links minimalista e funcional, e aprender cada vez mais sobre desenvolvimento web moderno.
+        <br><br>
+        No momento, o Link Hub está em fase beta — e você já está vendo os primeiros passos!
+        <br><br>
+        Agradeço sua visita. Em breve, esta página terá ainda mais informações, incluindo hobbies, experiências e ideias. Fique à vontade para explorar!
+      </p>
     </div>
+
+    <a href="index.html">
+      <button class="back-button">← Voltar ao Link Hub</button>
+    </a>
   </div>
 
   <div class="footer">feito por Luiz 2025</div>
 
   <script>
-    // Tema salvo
     document.addEventListener("DOMContentLoaded", () => {
       const savedTheme = localStorage.getItem('theme');
       const checkbox = document.querySelector('.switch input');
@@ -50,8 +123,7 @@
         checkbox.checked = true;
       }
 
-      // Animação de digitação
-      const text = document.getElementById("typing").textContent;
+      const text = "Sobre mim";
       const typingElement = document.getElementById("typing");
       typingElement.textContent = "";
       let i = 0;
@@ -65,7 +137,6 @@
       }, 80);
     });
 
-    // Alternar tema
     function toggleTheme(checkbox) {
       if (checkbox.checked) {
         document.documentElement.setAttribute('data-theme', 'light');
@@ -76,5 +147,6 @@
       }
     }
   </script>
+
 </body>
 </html>

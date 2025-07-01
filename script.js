@@ -167,7 +167,8 @@ for (const key in settings) {
 
   // Só executa se o elemento existe
   settings[key]();
-}
+ }
+});
 window.addEventListener("load", () => {
   const loader = document.getElementById('loader');
   const typingElement = document.getElementById("typing");

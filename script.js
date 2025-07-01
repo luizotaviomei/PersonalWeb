@@ -100,13 +100,11 @@ function closeUpdates() {
 function showVersion(index) {
   const modal = document.getElementById("updates-modal");
   const versionData = versions[index];
+
   document.getElementById("version-title").textContent = versionData.version;
 
   const container = document.getElementById("changelog-container");
-  container.innerHTML = "";
-
-  const ul = document.createElement("ul");
-  ul.classList.add("changelog");
+  container.innerHTML = ""; // Limpa TUDO dentro da caixa
 
   const sections = [
     { title: "Implementado", items: versionData.implemented },
@@ -120,24 +118,27 @@ function showVersion(index) {
       title.textContent = section.title + ":";
       container.appendChild(title);
 
+      const ul = document.createElement("ul");
+      ul.className = "changelog";
+
       section.items.forEach(item => {
         const li = document.createElement("li");
         li.textContent = item;
         ul.appendChild(li);
       });
+
+      container.appendChild(ul);
     }
   });
-
-  container.appendChild(ul);
 
   if (versionData.note) {
     const noteTitle = document.createElement("h3");
     noteTitle.textContent = "Nota do desenvolvedor:";
     container.appendChild(noteTitle);
 
-    const noteText = document.createElement("p");
-    noteText.textContent = versionData.note;
-    container.appendChild(noteText);
+    const p = document.createElement("p");
+    p.textContent = versionData.note;
+    container.appendChild(p);
   }
 
   document.getElementById("prev-version").disabled = index === versions.length - 1;

@@ -53,6 +53,27 @@ body {
   color: #a855f7;
 }
 
+.link-icon::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 0.7rem;
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.link-icon:hover::after {
+  opacity: 1;
+}
+
 .spinner {
   border: 6px solid rgba(255,255,255,0.2);
   border-top: 6px solid #a855f7;
@@ -205,38 +226,7 @@ body {
   justify-content: center;
 }
 
-.link-icon {
-  color: var(--text-color);
-  font-size: 2.5rem;
-  text-decoration: none;
-  position: relative;
-  transition: transform 0.3s ease;
-}
 
-.link-icon:hover {
-  transform: scale(1.2);
-}
-
-.link-icon::after {
-  content: attr(title);
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 0.7rem;
-  border-radius: 4px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.link-icon:hover::after {
-  opacity: 1;
-}
 
 .ball {
   position: absolute;

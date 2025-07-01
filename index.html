@@ -17,8 +17,9 @@
 </head>
 <body>
   <div id="loader">
-  <div class="spinner"></div>
-</div>
+    <div class="spinner"></div>
+  </div>
+
   <div class="menu-button" onclick="toggleSidebar()">
     <div></div>
     <div></div>
@@ -28,38 +29,38 @@
   <div id="sidebar-overlay" onclick="closeSidebar()"></div>
 
   <div id="sidebar">
-  <div class="sidebar-header">
-    <span>Menu</span>
-    <button onclick="closeSidebar()">✕</button>
-  </div>
-  <div class="sidebar-content">
-    <div class="accordion">
-      <div class="accordion-item">
-        <button class="accordion-title" onclick="showSoonMessage('Sobre mim')">Sobre mim</button>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-title" onclick="showSoonMessage('Configurações do site')">Configurações do site</button>
-      </div>
-      <div class="accordion-item">
-        <button class="accordion-title" onclick="openUpdates()">Últimas Atualizações</button>
+    <div class="sidebar-header">
+      <span>Menu</span>
+      <button onclick="closeSidebar()">✕</button>
+    </div>
+    <div class="sidebar-content">
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-title" onclick="showSoonMessage('Sobre mim')">Sobre mim</button>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-title" onclick="showSoonMessage('Configurações do site')">Configurações do site</button>
+        </div>
+        <div class="accordion-item">
+          <button id="updates-button" class="accordion-title">Últimas Atualizações</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Caixa flutuante de atualização -->
-<div id="updates-modal" class="updates-modal hidden">
-  <h2>Última Atualização</h2>
-  <p><strong>Versão:</strong> vBeta 1.0</p>
-  <ul class="changelog">
-    <li>✔ Layout inicial com tema escuro/claro</li>
-    <li>✔ Loader animado com bolas caindo</li>
-    <li>✔ Animação de digitação</li>
-    <li>✔ Menu lateral com abas e modal</li>
-    <li>✔ Botão de tema com ícones</li>
-  </ul>
-  <button onclick="closeUpdates()">Ótimo</button>
-</div>
+  <!-- Caixa flutuante de atualização -->
+  <div id="updates-modal" class="updates-modal hidden">
+    <h2>Última Atualização</h2>
+    <p><strong>Versão:</strong> vBeta 1.0</p>
+    <ul class="changelog">
+      <li>✔ Layout inicial com tema escuro/claro</li>
+      <li>✔ Loader animado com bolas caindo</li>
+      <li>✔ Animação de digitação</li>
+      <li>✔ Menu lateral com abas e modal</li>
+      <li>✔ Botão de tema com ícones</li>
+    </ul>
+    <button onclick="closeUpdates()">Ótimo</button>
+  </div>
 
   <div class="theme-switch">
     <label class="switch">
@@ -82,5 +83,13 @@
   <div class="footer">feito por Luiz 2025</div>
 
   <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const updatesButton = document.getElementById('updates-button');
+      if (updatesButton) {
+        updatesButton.addEventListener('click', openUpdates);
+      }
+    });
+  </script>
 </body>
 </html>

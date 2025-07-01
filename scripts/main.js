@@ -17,15 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     sobreBtn.parentNode.replaceChild(newLink, sobreBtn);
   }
 
-  // Sincroniza todos os elementos do settings.js com o estado salvo no localStorage
+  // Sincroniza os elementos de configuração com localStorage
   for (const key in settings) {
     const el = document.getElementById(key);
     if (!el) continue;
 
-    // Associa o evento ao elemento
     el.addEventListener('change', settings[key]);
 
-    // Define o valor inicial com base no localStorage
     if (el.type === 'checkbox') {
       el.checked = localStorage.getItem(key) === 'true';
     } else if (el.tagName === 'SELECT') {
@@ -33,7 +31,17 @@ document.addEventListener('DOMContentLoaded', () => {
       if (saved) el.value = saved;
     }
 
-    // Aplica a função de configuração imediatamente
     settings[key]();
+  }
+
+  // Corrige funcionamento dos botões do menu lateral
+  const updatesBtn = document.getElementById('updates-button');
+  if (updatesBtn) {
+    updatesBtn.addEventListener('click', openUpdates);
+  }
+
+  const settingsBtn = document.querySelector('.accordion-title[onclick="toggleSettings()"]');
+  if (settingsBtn) {
+    settingsBtn.addEventListener('click', toggleSettings);
   }
 });

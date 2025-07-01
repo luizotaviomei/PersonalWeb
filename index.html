@@ -49,11 +49,16 @@
   </div>
 
   <!-- Caixa flutuante de atualização -->
-  <div id="updates-modal" class="updates-modal hidden">
+ <div id="updates-modal" class="updates-modal hidden">
   <div class="modal-content">
-    <h2>Histórico de Atualizações</h2>
-    <p><strong>Versão: <span id="version-title"></span></strong></p>
-    <ul class="changelog"></ul>
+    <h2>Notas de atualização</h2> <!-- título principal fixo -->
+
+    <p><strong>Versão: <span id="version-title"></span></strong></p> <!-- versão atual -->
+
+    <div id="changelog-container"> <!-- container onde vamos inserir os detalhes -->
+      <!-- Aqui o JS vai inserir os <h3>, <ul>, <li>, <p> etc -->
+    </div>
+
     <div class="modal-buttons">
       <button id="prev-version" onclick="showPreviousVersion()">← Anterior</button>
       <button onclick="closeUpdates()">Ótimo</button>

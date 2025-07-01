@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updatesBtn.addEventListener('click', openUpdates);
   }
 
-  const settingsBtn = document.querySelector('.accordion-title[onclick="toggleSettings()"]');
+  const settingsBtn = document.getElementById('settings-button');
   if (settingsBtn) {
     settingsBtn.addEventListener('click', toggleSettings);
   }

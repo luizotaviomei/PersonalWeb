@@ -1,45 +1,55 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const currentVersion = 'v1.0'; // Ou pegue do localStorage se quiser
+  const currentVersion = 'v1.0';
 
   const settings = {
     toggleAnimations: () => {
-      const enabled = document.getElementById('toggleAnimations')?.checked;
+      const el = document.getElementById('toggleAnimations');
+      if (!el) return;
+      const enabled = el.checked;
       document.body.classList.toggle('no-animations', !enabled);
-      localStorage.setItem('animationsEnabled', enabled);
+      localStorage.setItem('toggleAnimations', enabled);
     },
     increaseContrast: () => {
-      const enabled = document.getElementById('increaseContrast')?.checked;
+      const el = document.getElementById('increaseContrast');
+      if (!el) return;
+      const enabled = el.checked;
       document.body.classList.toggle('high-contrast', enabled);
-      localStorage.setItem('contrastEnabled', enabled);
-    },
-    menuStyle: () => {
-      const style = document.getElementById('menuStyle')?.value || 'fixed';
-      localStorage.setItem('menuStyle', style);
+      localStorage.setItem('increaseContrast', enabled);
     },
     preloadUpdates: () => {
-      const enabled = document.getElementById('preloadUpdates')?.checked;
-      localStorage.setItem('preloadUpdates', enabled);
+      const el = document.getElementById('preloadUpdates');
+      if (!el) return;
+      localStorage.setItem('preloadUpdates', el.checked);
     },
     enableDevLogs: () => {
-      const enabled = document.getElementById('enableDevLogs')?.checked;
-      localStorage.setItem('enableDevLogs', enabled);
+      const el = document.getElementById('enableDevLogs');
+      if (!el) return;
+      localStorage.setItem('enableDevLogs', el.checked);
     },
     debugConsole: () => {
-      const enabled = document.getElementById('debugConsole')?.checked;
-      localStorage.setItem('debugConsole', enabled);
+      const el = document.getElementById('debugConsole');
+      if (!el) return;
+      localStorage.setItem('debugConsole', el.checked);
     },
     forceUpdateModal: () => {
-      const enabled = document.getElementById('forceUpdateModal')?.checked;
-      localStorage.setItem('lastSeenVersion', enabled ? '' : currentVersion);
-      localStorage.setItem('forceUpdateModal', enabled);
+      const el = document.getElementById('forceUpdateModal');
+      if (!el) return;
+      localStorage.setItem('lastSeenVersion', el.checked ? '' : currentVersion);
+      localStorage.setItem('forceUpdateModal', el.checked);
     },
     languageSelect: () => {
-      const lang = document.getElementById('languageSelect')?.value;
-      localStorage.setItem('languageSelect', lang);
+      const el = document.getElementById('languageSelect');
+      if (!el) return;
+      localStorage.setItem('languageSelect', el.value);
+    },
+    menuStyle: () => {
+      const el = document.getElementById('menuStyle');
+      if (!el) return;
+      localStorage.setItem('menuStyle', el.value);
     }
   };
 
-  // Inicializar e aplicar estados salvos
+  // Inicializar e aplicar estados
   for (const key in settings) {
     const el = document.getElementById(key);
     if (!el) continue;
@@ -47,16 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('change', settings[key]);
 
     if (el.type === 'checkbox') {
-      el.checked = localStorage.getItem(el.id) === 'true';
+      el.checked = localStorage.getItem(key) === 'true';
     } else if (el.tagName === 'SELECT') {
-      const saved = localStorage.getItem(el.id);
+      const saved = localStorage.getItem(key);
       if (saved) el.value = saved;
     }
 
-    settings[key](); // Aplica efeito visual (ex: contraste)
+    settings[key](); // Aplicar visual
   }
 
-  // Botões extras
+  // Botões extra
   document.getElementById('resetBtn')?.addEventListener('click', () => {
     localStorage.clear();
     location.reload();
@@ -66,3 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = 'index.html';
   });
 });
+
+// (opcional) função de ajuda
+function showHelp(settingId) {
+  alert(`Ajuda para a opção: ${settingId}`);
+}

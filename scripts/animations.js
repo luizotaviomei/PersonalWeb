@@ -11,6 +11,4 @@ function initSnow() {
     document.body.appendChild(ball);
   }
 }
-
-// Torna acessível globalmente
 window.initSnow = initSnow;

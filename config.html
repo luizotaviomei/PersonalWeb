@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações - Link Hub</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/545/545682.png">
+</head>
+<body>
+  <div class="config-container">
+    <h1>⚙️ Configurações do Site</h1>
+
+    <section class="config-section">
+      <label>
+        <input type="checkbox" id="toggleTheme" />
+        Tema escuro
+      </label>
+      <label>
+        <input type="checkbox" id="toggleAnimations" />
+        Animações visuais
+      </label>
+      <label>
+        <input type="checkbox" id="toggleContrast" />
+        Modo acessível (alto contraste)
+      </label>
+      <label>
+        <input type="checkbox" id="showNotifications" />
+        Notificações de novas versões
+      </label>
+      <label>
+        <input type="checkbox" id="devLogsMode" />
+        Modo Dev Logs
+      </label>
+    </section>
+
+    <section class="config-section">
+      <button onclick="resetPreferences()">Resetar preferências</button>
+      <button onclick="clearData()">Apagar dados salvos</button>
+      <a href="index.html">⬅️ Voltar para a página principal</a>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

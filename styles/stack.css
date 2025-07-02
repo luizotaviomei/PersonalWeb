@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1e1b2e;
+  font-family: 'Segoe UI', sans-serif;
+  color: white;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #c084fc;
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 10px;
+  color: #a78bfa;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: #2e1065;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.back-button:hover {
+  background-color: #4c1d95;
+}
+
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.skill img {
+  width: 40px;
+  height: 40px;
+}
+
+.progress {
+  flex: 1;
+  background-color: #2a2540;
+  border-radius: 10px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.bar {
+  height: 100%;
+  width: 0;
+  transition: width 1s ease-in-out;
+  border-radius: 10px;
+}

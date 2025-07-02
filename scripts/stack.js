@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let color = "red";
 
-    if (level >= 90) color = "deepskyblue";
-    else if (level >= 75) color = "limegreen";
-    else if (level >= 50) color = "yellow";
+    if (level >= 75) color = "deepskyblue";
+    else if (level >= 50) color = "limegreen";
     else if (level >= 25) color = "orange";
+    else color = "red";
 
     bar.style.backgroundColor = color;
   });

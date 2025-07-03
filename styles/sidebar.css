@@ -51,17 +51,15 @@
 .sidebar-header {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 260px;
+  right: 0;
+  width: 100%;
   height: 60px;
   padding: 0 1rem;
-  background: rgba(25, 25, 25, 0.95);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  font-weight: bold;
-  border-bottom: 1px solid #444;
-  z-index: 1002;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .sidebar-header span {

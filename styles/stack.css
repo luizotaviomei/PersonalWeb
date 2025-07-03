@@ -339,7 +339,6 @@ header {
   z-index: 1000;
 }
 
-/* ========= Responsividade Mobile ========= */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -372,25 +371,24 @@ header {
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0.8rem;
-  }
-
-  .typing {
-    font-size: 1.6rem;
+  .page-title {
+    font-size: 1.8rem;
+    margin: 2rem 0 1.5rem;
   }
 
   .category {
-    padding: 1rem;
-  }
-
-  .category h2 {
-    font-size: 1.1rem;
+    padding: 1rem 0.8rem;
+    margin: 0 0.5rem;
   }
 
   .skill-card {
+    width: 100%;
     padding: 1rem;
-    min-height: 110px;
+    margin: 0 auto;
+  }
+
+  .skills-grid {
+    gap: 2rem;
   }
 
   .progress-container {

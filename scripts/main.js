@@ -51,4 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = 'config.html';
     });
   }
+  window.addEventListener("load", () => {
+  initLoader();
+  initOrbitingBubbles(); // ativa as bolhas
+});
 });

@@ -8,10 +8,12 @@ function initLoader() {
 
     setTimeout(() => {
       loader.style.opacity = '0';
+
       setTimeout(() => {
         loader.remove();
         localStorage.setItem('visitedBefore', 'true');
 
+        // Só executa o typing se o elemento existir
         if (typingElement) {
           let i = 0;
           const interval = setInterval(() => {
@@ -23,8 +25,11 @@ function initLoader() {
             }
           }, 100);
         }
+
       }, 500);
     }, 1000);
   });
 }
+
 window.initLoader = initLoader;
+initLoader();

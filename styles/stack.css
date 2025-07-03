@@ -383,12 +383,8 @@ header {
     top: 16px;
     right: 16px;
   }
-  .back-button {
-    top: 16px;
-    left: 16px;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
+ .back-button {
+    display: none;
   }
   .skill-header img {
     width: 28px;

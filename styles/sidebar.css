@@ -1,136 +1,92 @@
-/* ===== Overlay (fundo escuro ao abrir sidebar) ===== */
+/* styles/sidebar.css */
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  padding: 20px;
+  box-sizing: border-box;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+#sidebar.open {
+  left: 0;
+}
+
+#sidebar .sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+}
+
+#sidebar .sidebar-header button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+#sidebar .sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.accordion-item {
+  display: block;
+}
+
+.accordion-title {
+  display: block;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.accordion-title:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 #sidebar-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1000;
+  background: rgba(0,0,0,0.5);
   display: none;
-  backdrop-filter: blur(2px);
+  z-index: 998;
 }
 
-/* ===== Sidebar ===== */
-#sidebar {
-  position: fixed;
-  top: 0;
-  left: -280px;
-  width: 260px;
-  height: 100vh;
-  background: radial-gradient(circle at 0% 0%, rgba(180, 140, 255, 0.3), rgba(10, 10, 10, 0.95));
-  box-shadow: 8px 0 20px rgba(180, 140, 255, 0.2);
-  color: white;
-  transition: left 0.4s ease, background 0.6s ease;
-  z-index: 1001;
-  display: flex;
-  flex-direction: column;
-  padding-top: 60px;
-  backdrop-filter: blur(4px);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  font-family: 'Rajdhani', sans-serif;
-}
-
-#sidebar.open {
-  left: 0;
-  animation: glowPull 0.4s ease-out;
-}
-
-/* ===== Efeito de puxada roxa ao abrir ===== */
-@keyframes glowPull {
-  0% {
-    box-shadow: -10px 0 30px rgba(180, 140, 255, 0);
-    background: rgba(15, 15, 15, 0.9);
-  }
-  100% {
-    box-shadow: 8px 0 40px rgba(180, 140, 255, 0.3);
-    background: radial-gradient(circle at 0% 0%, rgba(180, 140, 255, 0.2), rgba(15, 15, 15, 0.95));
-  }
-}
-
-/* ===== Cabeçalho da sidebar ===== */
-.sidebar-header {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 60px;
-  padding: 0 1rem;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background: transparent;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.sidebar-header button {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: white;
-  cursor: pointer;
-}
-
-/* ===== Conteúdo e Links ===== */
-.sidebar-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  padding: 2rem 1.5rem;
-}
-
-.sidebar-link {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 600;
-  font-size: 1.2rem;
-  padding: 14px 18px;
-  border-radius: 6px;
-  color: white;
-  text-decoration: none;
-  transition: all 0.2s ease-in-out;
-  backdrop-filter: blur(2px);
-  letter-spacing: 0.5px;
-}
-
-.sidebar-link:hover,
-.sidebar-link.active {
-  background: linear-gradient(90deg, rgba(130, 90, 255, 0.2), rgba(0, 0, 0, 0.3));
-  box-shadow: 0 0 20px rgba(180, 140, 255, 0.3);
-  transform: scale(1.08);
-  color: #ffffff;
-}
-
-/* ===== Botão Hamburguer com Animação ===== */
 .menu-button {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
-  z-index: 1100;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
   cursor: pointer;
 }
 
-.menu-button span {
-  display: block;
-  width: 25px;
-  height: 3px;
-  background: white;
-  transition: all 0.3s ease;
+.menu-button div {
+  width: 100%;
+  height: 4px;
+  background-color: var(--text-color);
   border-radius: 2px;
-}
-
-.menu-button.open span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.menu-button.open span:nth-child(2) {
-  opacity: 0;
-}
-.menu-button.open span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-.menu-button.hidden {
-  display: none;
 }

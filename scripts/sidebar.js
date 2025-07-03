@@ -6,7 +6,7 @@ function toggleSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.add("open");
     overlay.style.display = "block";
-    menuBtn.style.display = "none";
+    menuBtn.classList.add("open"); // animação do botão
   }
 }
 
@@ -18,10 +18,10 @@ function closeSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.remove("open");
     overlay.style.display = "none";
-    menuBtn.style.display = "flex";
+    menuBtn.classList.remove("open"); // desfaz a animação
   }
 }
 
-// Torna as funções globais para o HTML usar no onclick=""
+// Torna global
 window.toggleSidebar = toggleSidebar;
 window.closeSidebar = closeSidebar;

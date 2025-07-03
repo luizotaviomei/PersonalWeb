@@ -1,63 +1,19 @@
-/* styles/sidebar.css */
-
 #sidebar {
   position: fixed;
   top: 0;
   left: -260px;
-  width: 260px;
+  width: 240px;
   height: 100vh;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
-  padding: 20px;
-  box-sizing: border-box;
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
   transition: left 0.3s ease;
-  z-index: 999;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
 }
 
 #sidebar.open {
   left: 0;
-}
-
-#sidebar .sidebar-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-}
-
-#sidebar .sidebar-header button {
-  background: none;
-  border: none;
-  color: var(--text-color);
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-
-#sidebar .sidebar-content {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.accordion-item {
-  display: block;
-}
-
-.accordion-title {
-  display: block;
-  color: var(--text-color);
-  text-decoration: none;
-  font-size: 1rem;
-  padding: 10px;
-  border-radius: 6px;
-  transition: background 0.3s;
-}
-
-.accordion-title:hover {
-  background-color: rgba(255, 255, 255, 0.05);
 }
 
 #sidebar-overlay {
@@ -67,26 +23,51 @@
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.5);
+  z-index: 1000;
   display: none;
-  z-index: 998;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #444;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.sidebar-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.sidebar-link:hover {
+  color: #b88eff;
 }
 
 .menu-button {
   position: fixed;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1100;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 24px;
-  cursor: pointer;
+  gap: 5px;
 }
 
-.menu-button div {
-  width: 100%;
-  height: 4px;
-  background-color: var(--text-color);
-  border-radius: 2px;
+.menu-button span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: white;
+  transition: 0.3s ease;
 }

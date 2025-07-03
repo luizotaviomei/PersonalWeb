@@ -6,6 +6,7 @@
   --accent-color: #a855f7;
   --progress-bg: #333;
   --border-color: #444;
+  --category-bg: #111;
 }
 
 [data-theme="light"] {
@@ -15,6 +16,7 @@
   --accent-color: #7c3aed;
   --progress-bg: #e5e5e5;
   --border-color: #ddd;
+  --category-bg: #f5f5f5;
 }
 
 /* ========= Reset e Base ========= */
@@ -30,7 +32,7 @@ body {
 
 /* ========= Container ========= */
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
   min-height: calc(100vh - 100px);
@@ -79,43 +81,85 @@ header {
   50% { border-color: transparent; }
 }
 
-/* ========= Skills Container ========= */
-.skills {
+/* ========= Skills Grid ========= */
+.skills-grid {
   display: flex;
   flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* ========= Category ========= */
+.category {
+  background: var(--category-bg);
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+}
+
+.category h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--accent-color);
+  margin: 0 0 1.5rem 0;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+/* ========= Skills Row ========= */
+.skills-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
-/* ========= Skill Item ========= */
-.skill {
+/* ========= Skill Card ========= */
+.skill-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.skill:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   border-color: var(--accent-color);
 }
 
-/* ========= Skill Info ========= */
-.skill-info {
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+/* ========= Skill Header ========= */
+.skill-header {
   display: flex;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
 }
 
-.skill-info img {
+.skill-header img {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
-.skill-details {
+.skill-info {
   flex: 1;
 }
 
@@ -124,41 +168,58 @@ header {
   font-weight: bold;
   font-size: 1.1rem;
   color: var(--text-color);
+  margin-bottom: 0.2rem;
 }
 
 .skill-level {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--accent-color);
   opacity: 0.8;
 }
 
-/* ========= Progress Bar ========= */
-.progress {
+/* ========= Progress Container ========= */
+.progress-container {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.bar {
+.progress-bar {
   flex: 1;
-  height: 12px;
+  height: 8px;
   background: var(--progress-bg);
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
 }
 
-.bar::after {
+.progress-fill {
+  height: 100%;
+  width: 0;
+  border-radius: 4px;
+  transition: width 2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  height: 100%;
-  width: 0;
-  border-radius: 6px;
-  transition: width 2s ease-in-out;
-  background: var(--accent-color);
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0.2) 0%, 
+    transparent 50%, 
+    rgba(255,255,255,0.2) 100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .percentage {
@@ -200,23 +261,17 @@ header {
     text-align: center;
   }
 
-  .skill {
+  .category {
+    padding: 1.5rem;
+  }
+
+  .skills-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .skill-card {
     padding: 1rem;
-  }
-
-  .skill-info {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-
-  .progress {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .percentage {
-    text-align: center;
   }
 }
 
@@ -225,8 +280,22 @@ header {
     font-size: 1.5rem;
   }
 
-  .skill-info img {
+  .skill-header img {
     width: 32px;
     height: 32px;
+  }
+
+  .category h2 {
+    font-size: 1.1rem;
+  }
+
+  .progress-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  .percentage {
+    text-align: center;
   }
 }

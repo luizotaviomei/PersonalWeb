@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Animar barras de progresso
-  const progressBars = document.querySelectorAll(".progress-fill");
+  const bars = document.querySelectorAll(".bar");
   
   // Observer para animar quando entrar na viewport
   const observer = new IntersectionObserver((entries) => {
@@ -39,11 +39,11 @@ document.addEventListener("DOMContentLoaded", () => {
         else if (level >= 50) color = "#3b82f6"; // azul para níveis médios-altos
         else if (level >= 25) color = "#f59e0b"; // amarelo para níveis médios
         
-        bar.style.backgroundColor = color;
-        
-        // Animar a largura
+        // Animar a barra
         setTimeout(() => {
-          bar.style.width = level + "%";
+          bar.style.setProperty('--progress-width', level + '%');
+          bar.style.setProperty('--progress-color', color);
+          bar.style.background = `linear-gradient(to right, ${color} ${level}%, var(--progress-bg) ${level}%)`;
         }, 200);
         
         observer.unobserve(bar);
@@ -53,46 +53,19 @@ document.addEventListener("DOMContentLoaded", () => {
     threshold: 0.3
   });
 
-  progressBars.forEach(bar => {
+  bars.forEach(bar => {
     observer.observe(bar);
   });
 
-  // Calcular e atualizar estatísticas
-  setTimeout(() => {
-    updateStats();
-  }, 1000);
-
-  function updateStats() {
-    const skills = document.querySelectorAll('.progress-fill');
-    const totalSkills = skills.length;
-    const categories = document.querySelectorAll('.category').length;
-    
-    // Calcular média geral
-    let totalLevel = 0;
-    skills.forEach(skill => {
-      totalLevel += parseInt(skill.dataset.level);
-    });
-    const average = Math.round(totalLevel / totalSkills);
-
-    // Atualizar os elementos de estatística
-    const totalSkillsEl = document.getElementById('total-skills');
-    const totalCategoriesEl = document.getElementById('total-categories');
-    const averageLevelEl = document.getElementById('average-level');
-
-    if (totalSkillsEl) totalSkillsEl.textContent = totalSkills;
-    if (totalCategoriesEl) totalCategoriesEl.textContent = categories;
-    if (averageLevelEl) averageLevelEl.textContent = average + '%';
-  }
-
   // Adicionar efeitos de hover nos cards
-  const skillCards = document.querySelectorAll('.skill-card');
-  skillCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-      card.style.transform = 'translateY(-5px) scale(1.02)';
+  const skills = document.querySelectorAll('.skill');
+  skills.forEach(skill => {
+    skill.addEventListener('mouseenter', () => {
+      skill.style.transform = 'translateY(-5px)';
     });
     
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0) scale(1)';
+    skill.addEventListener('mouseleave', () => {
+      skill.style.transform = 'translateY(0)';
     });
   });
 });

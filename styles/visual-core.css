@@ -116,3 +116,22 @@
   left: 100%;
   transform: translateY(-50%) translateX(-50%);
 }
+
+.orbital-balls-container .orbital-ball {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
+  transform-origin: center;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(80px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(80px) rotate(-360deg);
+  }
+}

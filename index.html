@@ -15,34 +15,33 @@
   <link rel="stylesheet" href="styles/visual-core.css">
 </head>
 <body>
-  <!-- Overlay -->
-<div id="sidebar-overlay" onclick="closeSidebar()"></div>
 
-<!-- Sidebar -->
-<div id="sidebar" class="sidebar">
-  <div class="sidebar-header">
-    <span>Menu</span>
-    <button onclick="closeSidebar()">✕</button>
-  </div>
-  <div class="sidebar-content">
-    <a href="sobre.html" class="sidebar-link">Sobre mim</a>
-    <a href="config.html" class="sidebar-link">Configurações</a>
-    <a href="update.html" class="sidebar-link">Atualizações</a>
-    <a href="stack.html" class="sidebar-link">Stack</a>
-  </div>
-</div>
+  <!-- Botão hamburguer -->
   <div class="menu-button" onclick="toggleSidebar()">
-  <span></span><span></span><span></span>
-</div>
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- Overlay da sidebar -->
+  <div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <span>Menu</span>
+      <button onclick="closeSidebar()">✕</button>
+    </div>
+    <div class="sidebar-content">
+      <a href="sobre.html" class="sidebar-link">Sobre mim</a>
+      <a href="config.html" class="sidebar-link">Configurações</a>
+      <a href="update.html" class="sidebar-link">Atualizações</a>
+      <a href="stack.html" class="sidebar-link">Stack</a>
+    </div>
+  </div>
+
   <!-- Loader -->
   <div id="loader">
     <div class="spinner"></div>
     <div class="loader-message">Inicializando o Núcleo...</div>
-  </div>
-
-  <!-- Botão do menu -->
-  <div class="menu-button" onclick="toggleSidebar()">
-    <div></div><div></div><div></div>
   </div>
 
   <!-- Switch de tema -->
@@ -53,7 +52,7 @@
     </label>
   </div>
 
-  <!-- Novo visual central -->
+  <!-- Visual central -->
   <div id="core-visual">
     <div id="core"></div>
     <div class="orbit">
@@ -81,5 +80,6 @@
   <script src="scripts/sidebar.js"></script>
   <script src="scripts/core-visual.js"></script>
   <script src="scripts/main.js"></script>
+
 </body>
 </html>

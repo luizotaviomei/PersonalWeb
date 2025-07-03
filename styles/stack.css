@@ -360,12 +360,6 @@ header {
     text-align: center;
   }
 
-  .back-button {
-    position: static;
-    display: inline-block;
-    margin-bottom: 1rem;
-  }
-
   header {
     text-align: center;
   }
@@ -384,6 +378,12 @@ header {
   .page-title {
     font-size: 1.8rem;
     margin: 2rem 0 1.5rem;
+  }
+    .back-button {
+    top: 16px;
+    left: 16px;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
   }
   .skill-header img {
     width: 28px;

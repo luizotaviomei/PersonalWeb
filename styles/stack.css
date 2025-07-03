@@ -49,19 +49,21 @@ body {
   margin: 0 auto;
   padding: 2rem;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* ========= Header ========= */
 header {
   text-align: center;
   margin-bottom: 3rem;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
-
 .back-button {
-  position: absolute;
-  top: 0;
-  left: 0;
   color: var(--accent-color);
   text-decoration: none;
   font-weight: bold;
@@ -71,6 +73,7 @@ header {
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   font-size: 0.9rem;
+  display: inline-block;
 }
 
 .back-button:hover {
@@ -90,6 +93,8 @@ header {
   border-right: 2px solid var(--accent-color);
   padding-right: 5px;
   animation: blink 0.75s step-end infinite;
+   max-width: 100%;
+  text-align: center;
 }
 
 @keyframes blink {
@@ -126,17 +131,22 @@ header {
   display: grid;
   gap: 1.5rem;
   align-items: stretch;
+  width: 100%;
 }
 
-/* Desktop - 3 colunas */
+/* Desktop - 4 colunas */
 @media (min-width: 1024px) {
   .skills-row {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
 /* Tablet - 2 colunas */
 @media (min-width: 768px) and (max-width: 1023px) {
+  header {
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
   .skills-row {
     grid-template-columns: repeat(2, 1fr);
   }

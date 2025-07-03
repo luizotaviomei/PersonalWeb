@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (checkbox) checkbox.checked = true;
   }
 
+  // Garantir que o scroll funcione
+  document.body.style.overflow = 'auto';
+  document.documentElement.style.overflow = 'auto';
+
   // Animação de digitação do título
   const text = "Minha Stack";
   const typingElement = document.getElementById("typing");
@@ -106,34 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
     categoryObserver.observe(category);
   });
 
-  // Adicionar efeito de parallax sutil no scroll
-  let ticking = false;
-  
-  function updateParallax() {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.category');
-    
-    parallaxElements.forEach((element, index) => {
-      const speed = 0.5 + (index * 0.1);
-      const yPos = -(scrolled * speed);
-      element.style.transform = `translateY(${yPos}px)`;
-    });
-    
-    ticking = false;
-  }
-  
-  function requestTick() {
-    if (!ticking) {
-      requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
-  }
-  
-  // Ativar parallax apenas em desktop
-  if (window.innerWidth > 768) {
-    window.addEventListener('scroll', requestTick);
-  }
-
+  // Remover efeito parallax que pode interferir no scroll
   // Adicionar contador animado nas porcentagens
   const percentages = document.querySelectorAll('.percentage');
   const percentageObserver = new IntersectionObserver((entries) => {
@@ -164,4 +141,9 @@ document.addEventListener("DOMContentLoaded", () => {
   percentages.forEach(percentage => {
     percentageObserver.observe(percentage);
   });
+
+  // Debug: verificar se o scroll está funcionando
+  console.log('Altura do body:', document.body.scrollHeight);
+  console.log('Altura da viewport:', window.innerHeight);
+  console.log('Scroll habilitado:', document.body.style.overflow);
 });

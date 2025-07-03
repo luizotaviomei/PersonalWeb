@@ -28,6 +28,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -36,6 +38,9 @@ body {
   font-family: 'Fira Code', monospace;
   line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
 }
 
 /* ========= Container ========= */
@@ -116,12 +121,32 @@ header {
   font-weight: 600;
 }
 
-/* ========= Skills Row ========= */
+/* ========= Skills Row - LAYOUT EM COLUNAS ========= */
 .skills-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
   align-items: stretch;
+}
+
+/* Desktop - 3 colunas */
+@media (min-width: 1024px) {
+  .skills-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tablet - 2 colunas */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .skills-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile - 1 coluna */
+@media (max-width: 767px) {
+  .skills-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ========= Skill Card ========= */
@@ -137,6 +162,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 140px;
 }
 
 .skill-card::before {
@@ -171,19 +197,11 @@ header {
 
 /* ========= Ícones - Tamanhos responsivos ========= */
 .skill-header img {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   object-fit: contain;
-}
-
-/* Desktop - ícones menores */
-@media (min-width: 1024px) {
-  .skill-header img {
-    width: 32px;
-    height: 32px;
-  }
 }
 
 /* Tablet */
@@ -191,6 +209,14 @@ header {
   .skill-header img {
     width: 34px;
     height: 34px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .skill-header img {
+    width: 36px;
+    height: 36px;
   }
 }
 
@@ -288,7 +314,7 @@ header {
   z-index: 1000;
 }
 
-/* ========= Responsividade ========= */
+/* ========= Responsividade Mobile ========= */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -314,18 +340,9 @@ header {
     padding: 1.5rem;
   }
 
-  .skills-row {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
   .skill-card {
     padding: 1.2rem;
-  }
-
-  .skill-header img {
-    width: 32px;
-    height: 32px;
+    min-height: 120px;
   }
 }
 
@@ -348,6 +365,7 @@ header {
 
   .skill-card {
     padding: 1rem;
+    min-height: 110px;
   }
 
   .progress-container {
@@ -361,11 +379,6 @@ header {
   .percentage {
     min-width: 40px;
     font-size: 0.85rem;
-  }
-
-  .skill-header img {
-    width: 28px;
-    height: 28px;
   }
 
   .skill-name {

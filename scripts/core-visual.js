@@ -1,45 +1,49 @@
+
 // ========= core-visual.js =========
 
 const core = document.getElementById('core');
 const orbit = document.querySelector('.orbit');
-const orbitalContainer = document.createElement('div');
-orbitalContainer.classList.add('orbital-balls-container');
+const visualContainer = document.getElementById('core-visual');
 
-if (core && orbit) {
-  // Adiciona as bolhas à órbita (não ao visualContainer)
-  orbit.appendChild(orbitalContainer);
+// 1. Bolhas espalhadas pela tela toda
+function createFloatingBalls() {
+  const numBalls = 80;
 
-  // Geração das partículas
-  for (let i = 0; i < 25; i++) {
+  for (let i = 0; i < numBalls; i++) {
     const ball = document.createElement('div');
-    ball.classList.add('orbital-ball');
+    ball.classList.add('floating-ball');
 
-    const radius = 60 + Math.random() * 80;
-    const duration = 5 + Math.random() * 10;
-    const size = 2 + Math.random() * 4;
-    const angle = Math.random() * 360;
+    const size = Math.random() * 4 + 2;
+    const posX = Math.random() * window.innerWidth;
+    const posY = Math.random() * window.innerHeight;
+    const duration = 8 + Math.random() * 8;
 
     ball.style.width = `${size}px`;
     ball.style.height = `${size}px`;
-    ball.style.top = '50%';
-    ball.style.left = '50%';
-    ball.style.transform = `rotate(${angle}deg) translateX(${radius}px) rotate(-${angle}deg)`;
-    ball.style.animation = `orbit ${duration}s linear infinite`;
+    ball.style.left = `${posX}px`;
+    ball.style.top = `${posY}px`;
+    ball.style.animationDuration = `${duration}s`;
 
-    orbitalContainer.appendChild(ball);
+    visualContainer.appendChild(ball);
   }
+}
 
-  // Parallax do núcleo
+// 2. Núcleo com parallax
+if (core && orbit) {
   window.addEventListener('mousemove', (e) => {
     const { innerWidth, innerHeight } = window;
     const offsetX = (e.clientX - innerWidth / 2) / 30;
     const offsetY = (e.clientY - innerHeight / 2) / 30;
 
-    core.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
-    orbit.style.transform = `rotate(${e.clientX / 10}deg)`;
+    core.style.transform = `translate(-50%, -50%) translate(${offsetX}px, ${offsetY}px)`;
+    orbit.style.transform = `translate(-50%, -50%) rotate(${e.clientX / 10}deg)`;
   });
 
   window.addEventListener('mouseout', () => {
     core.style.transform = 'translate(-50%, -50%)';
+    orbit.style.transform = 'translate(-50%, -50%) rotate(0deg)';
   });
 }
+
+// 3. Inicializar
+createFloatingBalls();

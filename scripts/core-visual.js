@@ -6,13 +6,10 @@ const orbitalContainer = document.createElement('div');
 orbitalContainer.classList.add('orbital-balls-container');
 
 if (core && orbit) {
-  // Adiciona container de partículas orbitais ao core-visual
-  const visualContainer = document.getElementById('core-visual');
-  if (visualContainer) {
-    visualContainer.appendChild(orbitalContainer);
-  }
+  // Adiciona as bolhas à órbita (não ao visualContainer)
+  orbit.appendChild(orbitalContainer);
 
-  // Geração das partículas em órbita
+  // Geração das partículas
   for (let i = 0; i < 25; i++) {
     const ball = document.createElement('div');
     ball.classList.add('orbital-ball');
@@ -32,18 +29,17 @@ if (core && orbit) {
     orbitalContainer.appendChild(ball);
   }
 
-  // Parallax do núcleo com base no movimento do mouse
+  // Parallax do núcleo
   window.addEventListener('mousemove', (e) => {
     const { innerWidth, innerHeight } = window;
     const offsetX = (e.clientX - innerWidth / 2) / 30;
     const offsetY = (e.clientY - innerHeight / 2) / 30;
 
-    core.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    core.style.transform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px))`;
     orbit.style.transform = `rotate(${e.clientX / 10}deg)`;
   });
 
-  // Reset de animação ao sair do mouse da janela
   window.addEventListener('mouseout', () => {
-    core.style.transform = 'translate(0, 0)';
+    core.style.transform = 'translate(-50%, -50%)';
   });
 }

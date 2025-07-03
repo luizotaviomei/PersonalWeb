@@ -6,7 +6,12 @@ function toggleSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.add("open");
     overlay.style.display = "block";
-    menuBtn.classList.add("open", "hidden"); // anima e esconde
+    menuBtn.classList.add("open");
+
+    // Espera a animação de virar o X antes de esconder
+    setTimeout(() => {
+      menuBtn.classList.add("hidden");
+    }, 300); // 300ms é o tempo ideal para a transição visual
   }
 }
 
@@ -18,6 +23,13 @@ function closeSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.remove("open");
     overlay.style.display = "none";
-    menuBtn.classList.remove("open", "hidden"); // reexibe
+
+    // Primeiro mostra, depois remove a classe X
+    menuBtn.classList.remove("hidden");
+
+    // Pequeno delay para garantir transição suave
+    setTimeout(() => {
+      menuBtn.classList.remove("open");
+    }, 10);
   }
 }

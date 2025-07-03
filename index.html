@@ -4,11 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Link Hub - Luiz Otávio</title>
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/545/545682.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Fira+Code&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="styles/base2.css">
   <link rel="stylesheet" href="styles/layout.css">
   <link rel="stylesheet" href="styles/components.css">
@@ -16,48 +11,21 @@
   <link rel="stylesheet" href="styles/theme.css">
   <link rel="stylesheet" href="styles/sidebar.css">
   <link rel="stylesheet" href="styles/transitions.css">
-  <meta name="description" content="Link Hub de Luiz Otávio - Conecte-se comigo nas redes sociais.">
-  <meta property="og:title" content="Link Hub - Luiz Otávio">
-  <meta property="og:description" content="Tudo em só um lugar. Acesse meus perfis e projetos.">
-  <meta name="author" content="Luiz Otávio">
+  <link rel="stylesheet" href="styles/visual-core.css">
 </head>
 <body>
+  <!-- Loader -->
   <div id="loader">
     <div class="spinner"></div>
-    <div class="loader-message">Carregando Link Hub...</div>
+    <div class="loader-message">Inicializando o Núcleo...</div>
   </div>
 
+  <!-- Botão do menu -->
   <div class="menu-button" onclick="toggleSidebar()">
-    <div></div>
-    <div></div>
-    <div></div>
+    <div></div><div></div><div></div>
   </div>
 
-  <div id="sidebar-overlay" onclick="closeSidebar()"></div>
-
-  <div id="sidebar">
-    <div class="sidebar-header">
-      <span>Menu</span>
-      <button onclick="closeSidebar()">✕</button>
-    </div>
-    <div class="sidebar-content">
-      <div class="accordion">
-  <div class="accordion-item">
-    <a href="sobre.html" class="accordion-title">Sobre mim</a>
-  </div>
-  <div class="accordion-item">
-    <a href="config.html" id="settings-button" class="accordion-title">⚙️ Configurações do site</a>
-  </div>
-  <div class="accordion-item">
-    <a href="update.html" class="accordion-title">Últimas Atualizações</a>
-  </div>
-  <div class="accordion-item">
-    <a href="stack.html" class="accordion-title">Stack</a> <!-- Novo item -->
-  </div>
-</div>
-    </div>
-  </div>
-
+  <!-- Switch de tema -->
   <div class="theme-switch">
     <label class="switch">
       <input type="checkbox" onchange="toggleTheme(this)">
@@ -65,19 +33,24 @@
     </label>
   </div>
 
-  <div id="intro">Tudo em só um lugar</div>
-
-  <div class="container delay-6s">
-    <div class="typing" id="typing"></div>
-    <div class="cube-box">
-      <a class="link-icon" href="https://instagram.com/ltmeira" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a class="link-icon" href="https://github.com/luizotaviomei" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-      <a class="link-icon" href="#" title="WhatsApp" onclick="showUnavailableMessage(event)"><i class="fab fa-whatsapp"></i></a>
+  <!-- Novo visual central -->
+  <div id="core-visual">
+    <div id="core"></div>
+    <div class="orbit">
+      <a href="https://instagram.com/ltmeira" class="orbit-icon instagram" title="Instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://github.com/luizotaviomei" class="orbit-icon github" title="GitHub" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="#" class="orbit-icon whatsapp" title="WhatsApp" onclick="showUnavailableMessage(event)">
+        <i class="fab fa-whatsapp"></i>
+      </a>
     </div>
   </div>
 
+  <!-- Rodapé -->
   <div class="footer">feito por Luiz 2025</div>
-
   <div class="version-info">Versão atual: 1.2</div>
 
   <!-- Scripts -->
@@ -86,6 +59,6 @@
   <script src="scripts/applySettings.js"></script>
   <script src="scripts/theme.js"></script>
   <script src="scripts/sidebar.js"></script>
-  <script src="scripts/main.js"></script>
+  <script src="scripts/core-visual.js"></script>
 </body>
 </html>

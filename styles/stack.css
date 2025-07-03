@@ -153,10 +153,6 @@ header {
   gap: 0.5rem;
   margin-bottom: 2rem;
 }
-  .skills-row {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
 /* Mobile - 1 coluna */
 @media (max-width: 767px) {
@@ -178,8 +174,8 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 140px;
-  max-width: 100%; /* adicionado */
+  width: 260px;        
+  max-width: 90vw;
 }
 .skill-card::before {
   content: '';

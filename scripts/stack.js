@@ -19,6 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
         i++;
       } else {
         clearInterval(interval);
+        // Remove o cursor após completar a digitação
+        setTimeout(() => {
+          typingElement.style.borderRight = 'none';
+        }, 1000);
       }
     }, 100);
   }
@@ -33,23 +37,33 @@ document.addEventListener("DOMContentLoaded", () => {
         const fill = entry.target;
         const level = parseInt(fill.dataset.level);
         
-        // Definir cor baseada no nível
+        // Definir cor baseada no nível com gradientes mais bonitos
         let color = "#ef4444"; // vermelho para níveis baixos
-        if (level >= 75) color = "#10b981"; // verde para níveis altos
-        else if (level >= 50) color = "#3b82f6"; // azul para níveis médios-altos
-        else if (level >= 25) color = "#f59e0b"; // amarelo para níveis médios
+        if (level >= 80) {
+          color = "linear-gradient(90deg, #10b981, #059669)"; // verde para níveis muito altos
+        } else if (level >= 60) {
+          color = "linear-gradient(90deg, #3b82f6, #1d4ed8)"; // azul para níveis altos
+        } else if (level >= 40) {
+          color = "linear-gradient(90deg, #8b5cf6, #7c3aed)"; // roxo para níveis médios-altos
+        } else if (level >= 20) {
+          color = "linear-gradient(90deg, #f59e0b, #d97706)"; // amarelo para níveis médios
+        } else {
+          color = "linear-gradient(90deg, #ef4444, #dc2626)"; // vermelho para níveis baixos
+        }
         
-        // Animar a barra
+        // Animar a barra com delay escalonado
         setTimeout(() => {
           fill.style.width = level + '%';
-          fill.style.backgroundColor = color;
-        }, Math.random() * 500 + 200); // delay aleatório para efeito escalonado
+          fill.style.background = color;
+          fill.style.boxShadow = `0 0 10px ${level >= 60 ? '#3b82f6' : level >= 40 ? '#8b5cf6' : level >= 20 ? '#f59e0b' : '#ef4444'}40`;
+        }, Math.random() * 800 + 300);
         
         observer.unobserve(fill);
       }
     });
   }, {
-    threshold: 0.3
+    threshold: 0.2,
+    rootMargin: '0px 0px -50px 0px'
   });
 
   progressFills.forEach(fill => {
@@ -60,11 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const skillCards = document.querySelectorAll('.skill-card');
   skillCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
-      card.style.transform = 'translateY(-5px)';
+      card.style.transform = 'translateY(-8px) scale(1.02)';
     });
     
     card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translateY(0)';
+      card.style.transform = 'translateY(0) scale(1)';
     });
   });
 
@@ -76,18 +90,78 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           entry.target.style.opacity = '1';
           entry.target.style.transform = 'translateY(0)';
-        }, index * 200);
+        }, index * 300);
         categoryObserver.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.1
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
   });
 
   categories.forEach(category => {
     category.style.opacity = '0';
-    category.style.transform = 'translateY(30px)';
-    category.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    category.style.transform = 'translateY(50px)';
+    category.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
     categoryObserver.observe(category);
+  });
+
+  // Adicionar efeito de parallax sutil no scroll
+  let ticking = false;
+  
+  function updateParallax() {
+    const scrolled = window.pageYOffset;
+    const parallaxElements = document.querySelectorAll('.category');
+    
+    parallaxElements.forEach((element, index) => {
+      const speed = 0.5 + (index * 0.1);
+      const yPos = -(scrolled * speed);
+      element.style.transform = `translateY(${yPos}px)`;
+    });
+    
+    ticking = false;
+  }
+  
+  function requestTick() {
+    if (!ticking) {
+      requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+  
+  // Ativar parallax apenas em desktop
+  if (window.innerWidth > 768) {
+    window.addEventListener('scroll', requestTick);
+  }
+
+  // Adicionar contador animado nas porcentagens
+  const percentages = document.querySelectorAll('.percentage');
+  const percentageObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        const targetValue = parseInt(element.textContent);
+        let currentValue = 0;
+        const increment = targetValue / 60; // 60 frames para animação suave
+        
+        const counter = setInterval(() => {
+          currentValue += increment;
+          if (currentValue >= targetValue) {
+            element.textContent = targetValue + '%';
+            clearInterval(counter);
+          } else {
+            element.textContent = Math.floor(currentValue) + '%';
+          }
+        }, 16); // ~60fps
+        
+        percentageObserver.unobserve(element);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  percentages.forEach(percentage => {
+    percentageObserver.observe(percentage);
   });
 });

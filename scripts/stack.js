@@ -1,4 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Aplicar tema salvo
+  const savedTheme = localStorage.getItem('theme');
+  const checkbox = document.querySelector('.switch input');
+  if (savedTheme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    if (checkbox) checkbox.checked = true;
+  }
+
+  // Animação de digitação do título
+  const text = "Minha Stack";
+  const typingElement = document.getElementById("typing");
+  if (typingElement) {
+    typingElement.textContent = "";
+    let i = 0;
+    const interval = setInterval(() => {
+      if (i < text.length) {
+        typingElement.textContent += text[i];
+        i++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 100);
+  }
+
   // Animar barras de progresso
   const progressBars = document.querySelectorAll(".progress-fill");
   
@@ -9,51 +33,34 @@ document.addEventListener("DOMContentLoaded", () => {
         const bar = entry.target;
         const level = parseInt(bar.dataset.level);
         
+        // Definir cor baseada no nível
+        let color = "#ef4444"; // vermelho para níveis baixos
+        if (level >= 75) color = "#10b981"; // verde para níveis altos
+        else if (level >= 50) color = "#3b82f6"; // azul para níveis médios-altos
+        else if (level >= 25) color = "#f59e0b"; // amarelo para níveis médios
+        
+        bar.style.backgroundColor = color;
+        
         // Animar a largura
         setTimeout(() => {
           bar.style.width = level + "%";
         }, 200);
         
-        // Animar o número da porcentagem
-        const card = bar.closest('.skill-card');
-        const percentage = card.querySelector('.percentage');
-        animateNumber(percentage, 0, level, 2000);
-        
         observer.unobserve(bar);
       }
     });
   }, {
-    threshold: 0.5
+    threshold: 0.3
   });
 
   progressBars.forEach(bar => {
     observer.observe(bar);
   });
 
-  // Função para animar números
-  function animateNumber(element, start, end, duration) {
-    const startTime = performance.now();
-    
-    function updateNumber(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // Easing function (ease-out)
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(start + (end - start) * easeOut);
-      
-      element.textContent = current + '%';
-      
-      if (progress < 1) {
-        requestAnimationFrame(updateNumber);
-      }
-    }
-    
-    requestAnimationFrame(updateNumber);
-  }
-
   // Calcular e atualizar estatísticas
-  updateStats();
+  setTimeout(() => {
+    updateStats();
+  }, 1000);
 
   function updateStats() {
     const skills = document.querySelectorAll('.progress-fill');
@@ -67,74 +74,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     const average = Math.round(totalLevel / totalSkills);
 
-    // Atualizar os cards de estatística
-    setTimeout(() => {
-      const statNumbers = document.querySelectorAll('.stat-number');
-      if (statNumbers[0]) animateNumber(statNumbers[0], 0, totalSkills, 1500);
-      if (statNumbers[1]) animateNumber(statNumbers[1], 0, categories, 1500);
-      if (statNumbers[2]) animateNumber(statNumbers[2], 0, average, 1500);
-    }, 1000);
+    // Atualizar os elementos de estatística
+    const totalSkillsEl = document.getElementById('total-skills');
+    const totalCategoriesEl = document.getElementById('total-categories');
+    const averageLevelEl = document.getElementById('average-level');
+
+    if (totalSkillsEl) totalSkillsEl.textContent = totalSkills;
+    if (totalCategoriesEl) totalCategoriesEl.textContent = categories;
+    if (averageLevelEl) averageLevelEl.textContent = average + '%';
   }
 
   // Adicionar efeitos de hover nos cards
   const skillCards = document.querySelectorAll('.skill-card');
   skillCards.forEach(card => {
     card.addEventListener('mouseenter', () => {
-      const progressFill = card.querySelector('.progress-fill');
-      progressFill.style.animationPlayState = 'running';
+      card.style.transform = 'translateY(-5px) scale(1.02)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(0) scale(1)';
     });
   });
-
-  // Adicionar partículas de fundo (opcional)
-  createBackgroundParticles();
-
-  function createBackgroundParticles() {
-    const particlesContainer = document.createElement('div');
-    particlesContainer.className = 'particles-container';
-    particlesContainer.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: -1;
-      overflow: hidden;
-    `;
-
-    for (let i = 0; i < 20; i++) {
-      const particle = document.createElement('div');
-      particle.style.cssText = `
-        position: absolute;
-        width: 2px;
-        height: 2px;
-        background: var(--accent-color);
-        border-radius: 50%;
-        opacity: 0.3;
-        animation: float ${5 + Math.random() * 10}s linear infinite;
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        animation-delay: ${Math.random() * 5}s;
-      `;
-      particlesContainer.appendChild(particle);
-    }
-
-    document.body.appendChild(particlesContainer);
-  }
-
-  // Adicionar animação CSS para as partículas
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 0.3;
-      }
-      50% {
-        transform: translateY(-20px) rotate(180deg);
-        opacity: 0.6;
-      }
-    }
-  `;
-  document.head.appendChild(style);
 });

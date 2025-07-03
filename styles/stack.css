@@ -203,29 +203,8 @@ body {
   height: 100%;
   width: 0;
   border-radius: 4px;
-  transition: width 2s ease-in-out 0.5s;
-  position: relative;
-  overflow: hidden;
-}
-
-.progress-fill::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255,255,255,0.3), 
-    transparent
-  );
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  transition: width 2s ease-in-out;
+  background: var(--accent-color);
 }
 
 .percentage {
@@ -234,25 +213,6 @@ body {
   color: var(--accent-color);
   min-width: 40px;
   text-align: right;
-}
-
-/* ========= Cores das Barras de Progresso ========= */
-.progress-fill[data-level] {
-  background: linear-gradient(90deg, #ef4444, #f97316);
-}
-
-.progress-fill[data-level="95"],
-.progress-fill[data-level="45"],
-.progress-fill[data-level="40"],
-.progress-fill[data-level="37"],
-.progress-fill[data-level="30"] {
-  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
-}
-
-.progress-fill[data-level="20"],
-.progress-fill[data-level="10"],
-.progress-fill[data-level="5"] {
-  background: linear-gradient(90deg, #f97316, #eab308);
 }
 
 /* ========= Tooltips ========= */

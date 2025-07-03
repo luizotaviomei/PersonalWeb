@@ -6,12 +6,7 @@ function toggleSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.add("open");
     overlay.style.display = "block";
-    menuBtn.classList.add("open");
-
-    // Espera a animação de virar o X antes de esconder
-    setTimeout(() => {
-      menuBtn.classList.add("hidden");
-    }, 300);
+    menuBtn.style.display = "none";
   }
 }
 
@@ -23,14 +18,10 @@ function closeSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.remove("open");
     overlay.style.display = "none";
-
-    menuBtn.classList.remove("hidden");
-
-    setTimeout(() => {
-      menuBtn.classList.remove("open");
-    }, 10);
+    menuBtn.style.display = "flex";
   }
 }
 
+// Torna as funções globais para o HTML usar no onclick=""
 window.toggleSidebar = toggleSidebar;
 window.closeSidebar = closeSidebar;

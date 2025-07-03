@@ -11,7 +11,7 @@ function toggleSidebar() {
     // Espera a animação de virar o X antes de esconder
     setTimeout(() => {
       menuBtn.classList.add("hidden");
-    }, 300); // 300ms é o tempo ideal para a transição visual
+    }, 300);
   }
 }
 
@@ -24,12 +24,13 @@ function closeSidebar() {
     sidebar.classList.remove("open");
     overlay.style.display = "none";
 
-    // Primeiro mostra, depois remove a classe X
     menuBtn.classList.remove("hidden");
 
-    // Pequeno delay para garantir transição suave
     setTimeout(() => {
       menuBtn.classList.remove("open");
     }, 10);
   }
 }
+
+window.toggleSidebar = toggleSidebar;
+window.closeSidebar = closeSidebar;

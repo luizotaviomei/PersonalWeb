@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="styles/theme.css">
   <link rel="stylesheet" href="styles/sidebar.css">
   <link rel="stylesheet" href="styles/transitions.css">
+  <link rel="stylesheet" href="styles/visual-core.css">
 </head>
 <body>
 
@@ -51,11 +52,20 @@
     </label>
   </div>
 
-  <!-- Ícones centrais -->
-  <div class="center-icons">
-    <a href="https://instagram.com/ltmeira" target="_blank">Instagram</a>
-    <a href="https://github.com/luizotaviomei" target="_blank">GitHub</a>
-    <a href="#" onclick="showUnavailableMessage(event)">WhatsApp</a>
+  <!-- Visual central -->
+  <div id="core-visual">
+    <div id="core"></div>
+    <div class="orbit">
+      <a href="https://instagram.com/ltmeira" class="orbit-icon instagram" title="Instagram" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://github.com/luizotaviomei" class="orbit-icon github" title="GitHub" target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="#" class="orbit-icon whatsapp" title="WhatsApp" onclick="showUnavailableMessage(event)">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
   </div>
 
   <!-- Rodapé -->
@@ -68,6 +78,8 @@
   <script src="scripts/applySettings.js"></script>
   <script src="scripts/theme.js"></script>
   <script src="scripts/sidebar.js"></script>
+  <script src="scripts/core-visual.js"></script>
   <script src="scripts/main.js"></script>
+
 </body>
 </html>

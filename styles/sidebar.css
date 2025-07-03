@@ -1,67 +1,113 @@
-#sidebar {
-  position: fixed;
-  top: 0;
-  left: -260px;
-  width: 240px;
-  height: 100vh;
-  background: rgba(30, 30, 30, 0.95);
-  color: white;
-  transition: left 0.3s ease;
-  z-index: 1001;
-  display: flex;
-  flex-direction: column;
-}
-
-#sidebar.open {
-  left: 0;
-}
-
+/* ===== Overlay (fundo escuro ao abrir sidebar) ===== */
 #sidebar-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.4);
   z-index: 1000;
   display: none;
+  backdrop-filter: blur(2px);
 }
 
+/* ===== Sidebar ===== */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100vh;
+  background: radial-gradient(circle at 0% 0%, rgba(180, 140, 255, 0.3), rgba(10, 10, 10, 0.95));
+  box-shadow: 8px 0 20px rgba(180, 140, 255, 0.2);
+  color: white;
+  transition: left 0.4s ease, background 0.6s ease;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+  backdrop-filter: blur(4px);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#sidebar.open {
+  left: 0;
+  animation: glowPull 0.4s ease-out;
+}
+
+/* ===== Efeito de puxada roxa ao abrir ===== */
+@keyframes glowPull {
+  0% {
+    box-shadow: -10px 0 30px rgba(180, 140, 255, 0);
+    background: rgba(15, 15, 15, 0.9);
+  }
+  100% {
+    box-shadow: 8px 0 40px rgba(180, 140, 255, 0.3);
+    background: radial-gradient(circle at 0% 0%, rgba(180, 140, 255, 0.2), rgba(15, 15, 15, 0.95));
+  }
+}
+
+/* ===== Cabeçalho da sidebar ===== */
 .sidebar-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 60px;
+  padding: 0 1rem;
+  background: rgba(25, 25, 25, 0.95);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  font-weight: bold;
   border-bottom: 1px solid #444;
+  z-index: 1002;
 }
 
+.sidebar-header span {
+  font-size: 1.1rem;
+}
+
+.sidebar-header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== Conteúdo e Links ===== */
 .sidebar-content {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   gap: 1rem;
+  padding: 1.5rem;
 }
 
 .sidebar-link {
   color: white;
   text-decoration: none;
   font-size: 1rem;
-  transition: color 0.2s;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
 }
 
 .sidebar-link:hover {
-  color: #b88eff;
+  background: rgba(180, 140, 255, 0.15);
+  color: #cfaaff;
 }
 
+/* ===== Botão Hamburguer com Animação ===== */
 .menu-button {
   position: fixed;
   top: 1rem;
   left: 1rem;
   z-index: 1100;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  cursor: pointer;
 }
 
 .menu-button span {
@@ -69,5 +115,16 @@
   width: 25px;
   height: 3px;
   background: white;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.menu-button.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-button.open span:nth-child(2) {
+  opacity: 0;
+}
+.menu-button.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }

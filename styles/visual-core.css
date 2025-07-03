@@ -1,0 +1,118 @@
+/* ========= visual-core.css ========= */
+
+#core-visual {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-color);
+  z-index: 1;
+}
+
+/* Núcleo central animado */
+#core {
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle at center, #a259ff 40%, transparent 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 30px #a259ff88;
+  backdrop-filter: blur(4px);
+  animation: pulse 3s infinite ease-in-out;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+/* Efeito de pulsação do núcleo */
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px #a259ff66;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 40px #a259ffcc;
+    transform: scale(1.05);
+  }
+}
+
+/* Container giratório dos ícones e bolhas */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  border-radius: 50%;
+  animation: rotateOrbit 20s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Rotaçao contínua do container */
+@keyframes rotateOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Bolhas orbitando o núcleo */
+.orbit .ball {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  animation: orbitSpin 6s linear infinite;
+}
+
+/* Animação individual de cada bolha */
+@keyframes orbitSpin {
+  0% {
+    transform: rotate(0deg) translateX(140px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(140px) rotate(-360deg);
+  }
+}
+
+/* Ícones das redes sociais */
+.orbit-icon {
+  position: absolute;
+  font-size: 28px;
+  color: white;
+  transition: transform 0.3s, box-shadow 0.3s;
+  filter: drop-shadow(0 0 6px #a259ff88);
+  pointer-events: auto;
+}
+
+.orbit-icon:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 10px #a259ff, 0 0 20px #a259ff66;
+}
+
+/* Posições fixas dos ícones na órbita */
+.instagram {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.github {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.whatsapp {
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) translateX(-50%);
+}

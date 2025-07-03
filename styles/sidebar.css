@@ -28,6 +28,7 @@
   padding-top: 60px;
   backdrop-filter: blur(4px);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Rajdhani', sans-serif;
 }
 
 #sidebar.open {
@@ -81,22 +82,25 @@
   gap: 1rem;
   padding: 1.5rem;
 }
-.menu-button.hidden {
-  display: none;
-}
 
 .sidebar-link {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
   color: white;
   text-decoration: none;
   font-size: 1rem;
-  padding: 6px;
-  border-radius: 4px;
-  transition: background 0.2s, color 0.2s;
+  padding: 10px 14px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  backdrop-filter: blur(2px);
 }
 
-.sidebar-link:hover {
-  background: rgba(180, 140, 255, 0.15);
-  color: #cfaaff;
+.sidebar-link:hover,
+.sidebar-link.active {
+  background: linear-gradient(90deg, rgba(130, 90, 255, 0.2), rgba(0, 0, 0, 0.3));
+  box-shadow: 0 0 20px rgba(180, 140, 255, 0.3);
+  transform: scale(1.05);
+  color: #ffffff;
 }
 
 /* ===== Botão Hamburguer com Animação ===== */
@@ -128,4 +132,9 @@
 }
 .menu-button.open span:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Ocultar botão ao abrir sidebar (opcional, caso não use animação no botão) */
+.menu-button.hidden {
+  display: none;
 }

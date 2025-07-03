@@ -83,6 +83,9 @@
   gap: 1rem;
   padding: 1.5rem;
 }
+.menu-button.hidden {
+  display: none;
+}
 
 .sidebar-link {
   color: white;

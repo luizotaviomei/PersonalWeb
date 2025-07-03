@@ -1,3 +1,4 @@
+
 /* ========= visual-core.css ========= */
 
 #core-visual {
@@ -10,6 +11,7 @@
   justify-content: center;
   background: var(--bg-color);
   z-index: 1;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 /* Núcleo central animado */
@@ -40,7 +42,7 @@
   }
 }
 
-/* Container giratório dos ícones e bolhas */
+/* Ícones orbitando o núcleo */
 .orbit {
   position: absolute;
   top: 50%;
@@ -64,27 +66,6 @@
   }
 }
 
-/* Bolhas orbitando o núcleo */
-.orbit .ball {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  background: white;
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-  animation: orbitSpin 6s linear infinite;
-}
-
-/* Animação individual de cada bolha */
-@keyframes orbitSpin {
-  0% {
-    transform: rotate(0deg) translateX(140px) rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg) translateX(140px) rotate(-360deg);
-  }
-}
-
 /* Ícones das redes sociais */
 .orbit-icon {
   position: absolute;
@@ -94,44 +75,30 @@
   filter: drop-shadow(0 0 6px #a259ff88);
   pointer-events: auto;
 }
-
 .orbit-icon:hover {
   transform: scale(1.2);
   box-shadow: 0 0 10px #a259ff, 0 0 20px #a259ff66;
 }
 
-/* Posições fixas dos ícones na órbita */
-.instagram {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.github {
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.whatsapp {
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%) translateX(-50%);
-}
+/* Posições dos ícones */
+.instagram { top: 0; left: 50%; transform: translateX(-50%); }
+.github    { bottom: 0; left: 50%; transform: translateX(-50%); }
+.whatsapp  { top: 50%; left: 100%; transform: translateY(-50%) translateX(-50%); }
 
-.orbital-balls-container .orbital-ball {
+/* Bolhas flutuando pela tela */
+.floating-ball {
   position: absolute;
-  top: 50%;
-  left: 50%;
   background: white;
   border-radius: 50%;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.7);
-  transform-origin: center;
+  opacity: 0.4;
+  animation-name: floatPulse;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  pointer-events: none;
 }
 
-@keyframes orbit {
-  from {
-    transform: rotate(0deg) translateX(80px) rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg) translateX(80px) rotate(-360deg);
-  }
+@keyframes floatPulse {
+  0% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-10px); opacity: 0.7; }
+  100% { transform: translateY(0); opacity: 0.4; }
 }

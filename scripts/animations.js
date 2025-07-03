@@ -1,5 +1,5 @@
 function initOrbitingBubbles() {
-  const NUM_BOLHAS = 20;
+  const NUM_BOLHAS = 2000;
   const orbit = document.querySelector('.orbit');
 
   if (!orbit) return;

@@ -110,8 +110,10 @@ header {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  align-items: center;
+  max-width: 960px;
+  margin: 0 auto;
 }
-
 /* ========= Category ========= */
 .category {
   background: var(--category-bg);
@@ -132,11 +134,10 @@ header {
 
 /* ========= Skills Row - LAYOUT EM COLUNAS ========= */
 .skills-row {
-  display: grid;
-  gap: 1.5rem;
-  align-items: stretch;
-  width: 100%;
-  overflow-x: hidden; /* adicionado */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
 }
 
 /* Desktop - 4 colunas */

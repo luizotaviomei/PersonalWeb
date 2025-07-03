@@ -11,6 +11,50 @@
   background: var(--bg-color);
   z-index: 1;
 }
+#core {
+  width: 40px;
+  height: 40px;
+  background: radial-gradient(circle, #d4b3ff, #6e40c9);
+  border-radius: 50%;
+  box-shadow: 0 0 25px rgba(180, 140, 255, 0.8);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Container para as bolhas orbitando */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* Estilo base das bolhas */
+.orbit .ball {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  animation: orbitSpin 6s linear infinite;
+}
+
+/* Animação da órbita */
+@keyframes orbitSpin {
+  0% {
+    transform: rotate(0deg) translateX(140px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(140px) rotate(-360deg);
+  }
+}
 
 #core {
   width: 120px;

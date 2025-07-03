@@ -38,14 +38,18 @@ body {
   font-family: 'Fira Code', monospace;
   line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
-  overflow-x: hidden;
+  overflow-x: hidden; /* já está certo */
   overflow-y: auto;
   min-height: 100vh;
+
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* ========= Container ========= */
 .container {
   max-width: 1200px;
+  width: 100%; /* adicionado */
   margin: 0 auto;
   padding: 2rem;
   min-height: 100vh;
@@ -93,10 +97,10 @@ header {
   border-right: 2px solid var(--accent-color);
   padding-right: 5px;
   animation: blink 0.75s step-end infinite;
-   max-width: 100%;
+  max-width: 100%;
   text-align: center;
+  word-break: break-word; /* adicionado */
 }
-
 @keyframes blink {
   50% { border-color: transparent; }
 }
@@ -132,6 +136,7 @@ header {
   gap: 1.5rem;
   align-items: stretch;
   width: 100%;
+  overflow-x: hidden; /* adicionado */
 }
 
 /* Desktop - 4 colunas */
@@ -173,8 +178,8 @@ header {
   flex-direction: column;
   justify-content: space-between;
   min-height: 140px;
+  max-width: 100%; /* adicionado */
 }
-
 .skill-card::before {
   content: '';
   position: absolute;
@@ -203,8 +208,8 @@ header {
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap; /* adicionado */
 }
-
 /* ========= Ícones - Tamanhos responsivos ========= */
 .skill-header img {
   width: 32px;

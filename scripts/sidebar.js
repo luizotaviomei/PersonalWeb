@@ -6,7 +6,7 @@ function toggleSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.add("open");
     overlay.style.display = "block";
-    menuBtn.classList.add("open"); // animação do botão
+    menuBtn.classList.add("open", "hidden"); // anima e esconde
   }
 }
 
@@ -18,10 +18,6 @@ function closeSidebar() {
   if (sidebar && overlay && menuBtn) {
     sidebar.classList.remove("open");
     overlay.style.display = "none";
-    menuBtn.classList.remove("open"); // desfaz a animação
+    menuBtn.classList.remove("open", "hidden"); // reexibe
   }
 }
-
-// Torna global
-window.toggleSidebar = toggleSidebar;
-window.closeSidebar = closeSidebar;

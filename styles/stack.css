@@ -87,6 +87,9 @@ header {
   gap: 1rem;
 }
 .back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
   color: var(--accent-color);
   text-decoration: none;
   font-weight: bold;
@@ -96,7 +99,7 @@ header {
   border: 1px solid var(--border-color);
   transition: all 0.3s ease;
   font-size: 0.9rem;
-  display: inline-block;
+  z-index: 1000;
 }
 
 .back-button:hover {
